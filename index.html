@@ -4,9 +4,100 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="shortcut icon" type="image/jpg" href="./assets/free-heart-icon-431-thumb.png"/>
+    <title>Create-A-Date</title>
+    <!--Link to style sheet-->
+    <link rel="stylesheet" href="./assets/style.css">
+    <!--Imported Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+    <div class = "title-page">
+        <h1 class="title">Create-A-Date</h1>
+    </div>
+    <div class="title-btns">
+        <button class="new-date-btn">New Date</button>
+        <button class="saved-date-btn">Saved Date</button>
+    </div>
+    </header>
+    <div class="filter">
+        <h3>Filter</h3>
+        <label for="Restuarants">Restuarants</label>
+        <input type="checkbox" id="restaurant-check">
+        <label for="Movies">Movies</label>
+        <input type="checkbox" id="movie-check">
+        <!--We can add an event filter later if we want-->
+        <label for="Events">Events</label>
+        <input type="checkbox" id="event-check">
+        
+    </div>
+    <div class="criteria-page">
+        <h2>When and where?</h2>
+        <div class ="user-criteria">
+            <!--Let's make it so older dates can't be selected-->
+            <label for="Start-day">Day of Date:</label>
+            <input type="date" id="day-of">
+            <label for="Start-time">Time of Date:</label>
+            <input type="time" id="time-of">
+            <!--FOR LOCATION: WASN'T SURE WHAT INPUT WAS NEEDED FOR SEARCHING THE APIS-->
+            <label for="Location">Location:</label>
+            <input type="search" id="location-of">
+            <label for="Distance">Distance:</label>
+            <input type="range" id="distance-of">
+        </div>
+        <div class="create-date">
+            <button class="create-date-btn">Create Your Date</button>
+        </div>
+    </div>
+    <div class="new-date-page">
+        <h2>See Anything You Like?</h2>
+        <!--This is where the JavaScript will go-->
+        <!--Later, we can add delete option so user doesn't need to refresh filter-->
+        <!--Good place to add icons/framework requirement-->
+        <ul class="api-page">
+            <li class="restaurant-api">
+                <h3>Restuarants</h3>
+            </li>
+            <li class ="movie-api">
+                <h3>Movies</h3>
+            </li>
+            <li class="event-api">
+                <h3>Events</h3>
+            </li>
+        </ul>
+        <div class="save-date">
+            <!--Would like to add a feature where all options fade out as you save the date-->
+            <button class="save-date-btn">Save This Date</button>
+        </div>
+        <div class="saved-date-page">
+            <h2>Saved Dates</h2>
+            <ul class="saved-api-page">
+                <li class="saved-restaurant-api">
+                    <h3>Restuarants</h3>
+                </li>
+                <li class ="saved-movie-api">
+                    <h3>Movies</h3>
+                </li>
+                <li class="saved-event-api">
+                    <h3>Events</h3>
+                </li>
+            </ul>
+            <div class="edit-date-btns">
+                <button class="edit-date-btn">Edit this Date</button>
+                <button class="save-date-btn">Save This Date</button>
+                <!--Maybe we could create a feature where the "X" icon will function as the delete btn?-->
+                <button class="delete-date-btn">Delete This Date</button>
+                <!--Let's make it so this container appears when multiple dates are saved-->
+                <div class="multiple-dates">
+                <button class="next-btn">Next</button>
+                <button class="previous-btn">Previous</button>
+                </div>
+            </div>
+
+    </div>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
