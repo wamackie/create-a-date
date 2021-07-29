@@ -31,17 +31,18 @@
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 
 }
-
-.saved-date-page{
-  display: none;
-}
+.medium-flex-dir-row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row; }
 
 .title-page{
   width: 85%;
   padding: 15px;
   background-color: var(--secondary-color);
   border-radius: 20%;
-  display: none;
 }
 
 h1 {
@@ -196,6 +197,7 @@ button.create-date-btn{
   background-color: var(--quinary-color);
   border-radius: 20%;
   top: 45%;
+  display: none;
 }
 
 .new-title{
@@ -210,7 +212,7 @@ button.create-date-btn{
   border-bottom: 5px solid var(--primary-color);
 }
 
-.api-page{
+.api-page, .saved-api-page{
   background-color: var(--quinary-color);
   margin: 0%;
 }
@@ -223,6 +225,7 @@ button.create-date-btn{
   padding: 5px;
   outline: none;
   border: none;
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
 
 }
 
@@ -249,6 +252,94 @@ li.event-api::marker{
   background-color: var(--tertiary-color);
   text-shadow: 1px 2px rgba(199,81,70, 0.5);
   border-radius: 0 15px;
+}
+
+.saved-date-page{
+width: 90%;
+height: 90%;
+background-color: var(--tertiary-color);
+border-radius: 15%;
+top: 50%;
+display: none;
+}
+
+.save-title{
+  background-color: var(--secondary-color);
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+  color: var(--primary-color);
+  text-shadow: 2px 4px rgba(199,81,70, 0.5);
+  border-radius: 20% 20% 0 0;
+  border-bottom: 8px solid var(--primary-color);
+}
+
+.save-list{
+  margin-top: 5%;
+  font-size: 20px;
+  text-align: center;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  padding: 5px;
+  outline: none;
+  border: none;
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+}
+
+li.saved-restaurant-api::marker{
+  color: var(--quarternary-color);
+}
+li.saved-movie-api::marker{
+  color: var(--quarternary-color);
+}
+li.saved-event-api::marker{
+  color: var(--quarternary-color);
+}
+
+.saved-api-page{
+  background-color: var(--tertiary-color);
+}
+
+.date-day, .date-zip{
+  text-align: center;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+.date-display, .zip-display{
+  background-color: var(--tertiary-color);
+  text-align: center;
+}
+
+.save-date-btn2, .delete-date-btn{
+  font-size: 35px;
+  text-align: center;
+  padding: 10px;
+  margin-top:12%;
+  margin-left: 11%;
+  border: 5px solid var(--primary-color);
+  background-color: var(--tertiary-color);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
+  color: var(--primary-color);
+  background-color: var(--tertiary-color);
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+  border-radius:15px;
+}
+
+.next-btn2, .previous-btn{
+  padding: 10px;
+  background-color: var(--quinary-color);
+  font-size: 20px;
+  color: var(--primary-color);
+  margin-left: 18%;
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0px 15px;
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+}
+
+.color{
+  background-color: var(--tertiary-color);
 }
 
 

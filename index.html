@@ -56,6 +56,7 @@
         <!--Good place to add icons/framework requirement-->
         <ul class="api-page">
             <h3 class="new-list">Restuarants</h3>
+            <!--WE MAY NEED TO ADD NEXT/PREVIOUS BUTTONS FOR ALL OPTIONS-->
             <li class="restaurant-api">
                 <div class="yelp-container">
                     <p>Api appends here!</p>
@@ -79,35 +80,44 @@
             <button class="save-date-btn">Save This Date</button>
     </div>
         <div class="saved-date-page">
-            <h2>Saved Dates</h2>
+            <h2 class="save-title">Saved Dates</h2>
+            <div class="date-day-display">
+                <div class="date-day">Date Day:</div>
+                <div class="date-display">August 8th, 2021</div>
+                <div class= "date-zip">Zipcode:</div>
+                <div class="zip-display">32120</div>
+            </div>
             <ul class="saved-api-page">
+                <h3 class="save-list">Restaurants</h3>
                 <li class="saved-restaurant-api">
-                    <h3>Restuarants</h3>
                     <div class="saved-yelp-container">
-
+                        <p>Api appends here!</p>
                     </div>
                 </li>
+                <h3 class="save-list">Movies</h3>
                 <li class ="saved-movie-api">
-                    <h3>Movies</h3>
                     <div class="saved-fandango-container">
-
+                        <p>Api appends here!</p>
                     </div>
                 </li>
+                <h3 class="save-list">Events</h3>
                 <li class="saved-event-api">
-                    <h3>Events</h3>
                     <div class="saved-ticketmaster-container">
-                    
+                         <p>Api appends here!</p>
                     </div>
                 </li>
             </ul>
-                <button class="edit-date-btn">Edit this Date</button>
-                <button class="save-date-btn">Save This Date</button>
-                <!--Maybe we could create a feature where the "X" icon will function as the delete btn?-->
-                <button class="delete-date-btn">Delete This Date</button>
+            <div class="medium-flex-dir-row color">
                 <!--Let's make it so this container appears when multiple dates are saved-->
-                <button class="next-btn">Next</button>
+                <button class="next-btn2">Next</button>
                 <button class="previous-btn">Previous</button>
             </div>
+            <div class="medium-flex-dir-row color">
+                <button class="save-date-btn2">Save</button>
+                <!--Maybe we could create a feature where the "X" icon will function as the delete btn?-->
+                <button class="delete-date-btn">Delete</button>
+            </div>
+        </div>
 
     <script src="./assets/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
