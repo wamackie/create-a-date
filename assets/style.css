@@ -29,7 +29,7 @@
 
 }
 
-.criteria-page, .new-date-page, .saved-date-page{
+.new-date-page, .saved-date-page{
   display: none;
 }
 
@@ -71,6 +71,10 @@ h1 {
   text-shadow: 1px 2px rgba(199,81,70, 0.5);
 }
 
+.filter-page{
+  display: none;
+}
+
 .filter-title{
   background-color: var(--tertiary-color);
   font-size: 40px;
@@ -86,6 +90,7 @@ h1 {
   width: 50%;
   background-color: var(--quinary-color);
   border-radius: 20%;
+  top: 40%;
 }
 
 
@@ -109,9 +114,71 @@ input.check-box{
 
 .next-btn{
   position: absolute;
-  top: 80%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%,-50%);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  font-size: 30px;
+  color: var(--primary-color);
+  background-color: var(--tertiary-color);
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+  border-radius: 0px 15px;
+}
+
+.criteria-page{
+  width: 85%;
+  height: 30%;
+  background-color: var(--quinary-color);
+  border-radius: 20%;
+  top: 40%;
+  display: none;
+}
+
+.criteria-title{
+  background-color: var(--tertiary-color);
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--primary-color);
+  text-shadow: 2px 4px rgba(199,81,70, 0.5);
+  border-radius: 20% 20% 0 0;
+  border-bottom: 5px solid var(--primary-color);
+}
+
+.criteria-list{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  width: 60%;
+  font-size: 20px;
+  margin-left: 65px;
+  color: var(--primary-color);
+  background-color: var(--quinary-color);
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+}
+
+.user-criteria{
+  background-color: var(--quinary-color);
+}
+
+input#day-of, #zipcode{
+  padding: 15px;
+  border: 20px solid var(--quinary-color);
+  background-color: var(--primary-color);
+  
+}
+
+button.create-date-btn{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 10%;
+  margin-left: 31px;
+  font-size: 30px;
+  background-color: var(--tertiary-color);
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
   padding: 20px;
   color: var(--primary-color);
@@ -119,6 +186,8 @@ input.check-box{
   text-shadow: 1px 2px rgba(199,81,70, 0.5);
   border-radius: 20%;
 }
+
+
 
 
 

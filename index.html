@@ -38,13 +38,13 @@
         <button class="next-btn">Next</button>
     </div>
     <div class="criteria-page">
-        <h2>When and where?</h2>
+        <h2 class="criteria-title">When and where?</h2>
         <div class ="user-criteria">
             <!--Let's make it so older dates can't be selected-->
-            <label for="Start-day">Day of Date:</label>
+            <label class="criteria-list" for="Start-day">Day of Date:</label>
             <input type="date" id="day-of">
             <!--FOR LOCATION: WASN'T SURE WHAT INPUT WAS NEEDED FOR SEARCHING THE APIS-->
-            <label for="zipcode">Zipcode:</label>
+            <label class="criteria-list" for="zipcode">Zipcode:</label>
             <input type="search" id="zipcode">
         </div>
             <button class="create-date-btn">Create Your Date</button>
@@ -114,5 +114,6 @@
 
     </div>
     <script src="./assets/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 </body>
 </html>
