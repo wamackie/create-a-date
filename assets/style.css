@@ -1,3 +1,6 @@
+@import 'foundation';
+
+
 /*Imported Font*/
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap');
 
@@ -29,7 +32,7 @@
 
 }
 
-.new-date-page, .saved-date-page{
+.saved-date-page{
   display: none;
 }
 
@@ -184,7 +187,7 @@ button.create-date-btn{
   color: var(--primary-color);
   background-color: var(--tertiary-color);
   text-shadow: 1px 2px rgba(199,81,70, 0.5);
-  border-radius: 20%;
+  border-radius: 0 15px;
 }
 
 
