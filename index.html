@@ -12,16 +12,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
+    <!--Foundation CSS Framework-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
 </head>
 <body>
     <header>
     <div class = "title-page">
-        <h1 class="title">Create-A-Date</h1>
-    </div>
-    <div class="title-btns">
+        <h1 class="title">
+           Create-A-Date
+        </h1>
         <button class="new-date-btn">New Date</button>
         <button class="saved-date-btn">Saved Date</button>
-    </div>
     </header>
     <div class="filter">
         <h3>Filter</h3>
@@ -32,6 +33,7 @@
         <!--We can add an event filter later if we want-->
         <label for="Events">Events</label>
         <input type="checkbox" id="event-check">
+    </div>
         
     </div>
     <div class="criteria-page">
@@ -40,17 +42,11 @@
             <!--Let's make it so older dates can't be selected-->
             <label for="Start-day">Day of Date:</label>
             <input type="date" id="day-of">
-            <label for="Start-time">Time of Date:</label>
-            <input type="time" id="time-of">
             <!--FOR LOCATION: WASN'T SURE WHAT INPUT WAS NEEDED FOR SEARCHING THE APIS-->
-            <label for="Location">Location:</label>
-            <input type="search" id="location-of">
-            <label for="Distance">Distance:</label>
-            <input type="range" id="distance-of">
+            <label for="zipcode">Zipcode:</label>
+            <input type="search" id="zipcode">
         </div>
-        <div class="create-date">
             <button class="create-date-btn">Create Your Date</button>
-        </div>
     </div>
     <div class="new-date-page">
         <h2>See Anything You Like?</h2>
@@ -60,12 +56,21 @@
         <ul class="api-page">
             <li class="restaurant-api">
                 <h3>Restuarants</h3>
+                <div class="yelp-container">
+
+                </div>
             </li>
             <li class ="movie-api">
                 <h3>Movies</h3>
+                <div class="fandango-container">
+
+                </div>
             </li>
             <li class="event-api">
                 <h3>Events</h3>
+                <div class="ticketmaster-container">
+
+                </div>
             </li>
         </ul>
         <div class="save-date">
@@ -77,12 +82,21 @@
             <ul class="saved-api-page">
                 <li class="saved-restaurant-api">
                     <h3>Restuarants</h3>
+                    <div class="saved-yelp-container">
+
+                    </div>
                 </li>
                 <li class ="saved-movie-api">
                     <h3>Movies</h3>
+                    <div class="saved-fandango-container">
+
+                    </div>
                 </li>
                 <li class="saved-event-api">
                     <h3>Events</h3>
+                    <div class="saved-ticketmaster-container">
+                    
+                    </div>
                 </li>
             </ul>
             <div class="edit-date-btns">
