@@ -265,7 +265,7 @@ li.event-api::marker{
 
 .saved-date-page{
 width: 90%;
-height: 90%;
+height: 95%;
 background-color: var(--tertiary-color);
 border-radius: 15%;
 top: 50%;
@@ -274,7 +274,7 @@ display: none;
 
 .save-title{
   background-color: var(--secondary-color);
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
   text-align: center;
   padding: 20px;
@@ -322,11 +322,11 @@ li.saved-event-api::marker{
 }
 
 .save-date-btn2, .delete-date-btn{
-  font-size: 35px;
+  font-size: 28px;
   text-align: center;
   padding: 10px;
-  margin-top:12%;
-  margin-left: 11%;
+  margin-top:8%;
+  margin-left: 15%;
   border: 5px solid var(--primary-color);
   background-color: var(--tertiary-color);
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
