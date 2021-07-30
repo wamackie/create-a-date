@@ -1,20 +1,7 @@
+//remove this variable in the future
+var test;
 
-function search(){
-    console.log("worked")
-
-    //a33fecb2f255c04e008c528cf89286a2
-
-    fetch(
-        "https://api.documenu.com/v2/restaurants/zip_code/33756?size=30&key=a33fecb2f255c04e008c528cf89286a2"
-        )
-        .then(function(response1) {
-            return response1.json();
-        })
-        .then(function(response) {
-            console.log(response)
-
-        })
-}
+var restaurantList = {}
 const newDateBtn = document.querySelector(".new-date-btn")
 const savedDateBtn = document.querySelector(".saved-date-btn")
 const nextBtn = document.querySelector(".next-btn")
@@ -38,12 +25,29 @@ savedDateBtn.onclick=()=>{
     savedDatePage.classList.add("savedDateActivate");
 }
 
+//Filter parameter page 
 nextBtn.onclick=()=>{
     filterPage.classList.remove("filterActivate");
     criteriaPage.classList.add("criteriaActivate");
 }
 
+//userInput (date + ZIP) page
 createBtn.onclick=()=>{
+    var zipcode = $('#zipcode').val();
+    fetch(
+        "https://api.documenu.com/v2/restaurants/zip_code/"+zipcode+"?size=30&key=a33fecb2f255c04e008c528cf89286a2"
+        )
+        .then(function(response1) {
+            return response1.json();
+        })
+        .then(function(response) {
+            test =response
+            for(var restaurant in response.data){
+                // console.log(test.data[restaurant])
+                restaurantList[response.data[restaurant].restaurant_name] = response.data[restaurant];
+            }
+        })
+
     criteriaPage.classList.remove("criteriaActivate");
     newDatePage.classList.add("newDateActivate");
 }
