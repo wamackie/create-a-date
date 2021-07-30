@@ -1,31 +1,46 @@
-var test
-function search() {
-    var zip = 32803
-    var location = ($("#location-of").val())
-    var apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=0JGGR2SJH46d1Ckem69HRE9prsVCVkv1&postalCode="+location+""
-    fetch(apiUrl)
-      .then(function (response) {
-        console.log(response.status);
-        //  Conditional for the the response.status.
-        if (response.status !== 200) {
-          // Place the response.status on the page.
-          console.log(response.status)
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        console.log(date);
-        // Make sure to look at the response in the console and read how 404 response is structured.
-        test = (data);
-        var date = data["_embedded"].events[0].dates.start.localDate
-        
-        //var zip = 
-        
-        //var day =
-      })
-  }
+const newDateBtn = document.querySelector(".new-date-btn")
+const savedDateBtn = document.querySelector(".saved-date-btn")
+const nextBtn = document.querySelector(".next-btn")
+const createBtn = document.querySelector(".create-date-btn")
+const saveBtn = document.querySelector(".save-date-btn")
+const saveBtn2 = document.querySelector(".save-date-btn2")
+const nextBtn2 = document.querySelector(".next-btn2")
+const titlePage = document.querySelector(".title-page")
+const filterPage = document.querySelector(".filter-page")
+const criteriaPage = document.querySelector(".criteria-page")
+const newDatePage = document.querySelector(".new-date-page")
+const savedDatePage = document.querySelector(".saved-date-page")
 
-//postalCode, day
+newDateBtn.onclick=()=>{
+    filterPage.classList.add("filterActivate");
+    titlePage.classList.add("titleDeactivate");
+}
 
-//name date address location
+savedDateBtn.onclick=()=>{
+    titlePage.classList.add("titleDeactivate");
+    savedDatePage.classList.add("savedDateActivate");
+}
+
+nextBtn.onclick=()=>{
+    filterPage.classList.remove("filterActivate");
+    criteriaPage.classList.add("criteriaActivate");
+}
+
+createBtn.onclick=()=>{
+    criteriaPage.classList.remove("criteriaActivate");
+    newDatePage.classList.add("newDateActivate");
+}
+
+saveBtn.onclick=()=>{
+    location.reload();
+}
+
+saveBtn2.onclick=()=>{
+    location.reload();
+}
+
+
+
+
+
+
