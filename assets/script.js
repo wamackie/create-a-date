@@ -1,7 +1,8 @@
 //remove this variable in the future
 var test;
 
-var restaurantList = {}
+var restaurantList = {};
+var eventList = {};
 const newDateBtn = document.querySelector(".new-date-btn")
 const savedDateBtn = document.querySelector(".saved-date-btn")
 const nextBtn = document.querySelector(".next-btn")
@@ -38,15 +39,32 @@ createBtn.onclick=()=>{
         "https://api.documenu.com/v2/restaurants/zip_code/"+zipcode+"?size=30&key=a33fecb2f255c04e008c528cf89286a2"
         )
         .then(function(response1) {
-            return response1.json();
+          return response1.json();
         })
         .then(function(response) {
-            test =response
-            for(var restaurant in response.data){
-                // console.log(test.data[restaurant])
-                restaurantList[response.data[restaurant].restaurant_name] = response.data[restaurant];
-            }
+          for(var restaurant in response.data){
+              // console.log(test.data[restaurant])
+              restaurantList[restaurant] = response.data[restaurant];  
+          }
         })
+
+    var apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=0JGGR2SJH46d1Ckem69HRE9prsVCVkv1&postalCode="+zipcode+""
+    fetch(apiUrl)
+      .then(function (response) {
+        console.log(response.status);
+        //  Conditional for the the response.status.
+        if (response.status !== 200) {
+        // Place the response.status on the page.
+        console.log(response.status)
+        }
+        return response.json();
+      })
+        .then(function (data) {
+        // Make sure to look at the response in the console and read how 404 response is structured.
+        for(var event in data["_embedded"].events){
+          eventList[event] = data["_embedded"].events[event];
+        }
+      })
 
     criteriaPage.classList.remove("criteriaActivate");
     newDatePage.classList.add("newDateActivate");

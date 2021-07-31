@@ -2,7 +2,7 @@ var test
 function search() {
     var zip = 32803
     var location = ($("#location-of").val())
-    var apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=0JGGR2SJH46d1Ckem69HRE9prsVCVkv1&postalCode="+location+""
+    var apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=0JGGR2SJH46d1Ckem69HRE9prsVCVkv1&postalCode="+zipcode+""
     fetch(apiUrl)
       .then(function (response) {
         console.log(response.status);
