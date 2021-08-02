@@ -632,6 +632,20 @@ li.event-api::marker{
   border-radius: 0 15px;
 }
 
+.shuffle-btn{
+  text-align: center;
+  margin-left: 45%;
+  font-size: 30px;
+  background-color: var(--tertiary-color);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  color: var(--primary-color);
+  background-color: var(--tertiary-color);
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+  border: 5px solid var(--primary-color);
+  border-radius: 0 15px;
+}
+
 .saved-date-page{
 width: 90%;
 height: 95%;

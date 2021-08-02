@@ -1,5 +1,5 @@
 //remove this variable in the future
-var restuarantTest;
+var restaurantTest;
 var eventTest;
 
 var restaurantList = {};
@@ -18,9 +18,12 @@ const filterPage = document.querySelector(".filter-page")
 const criteriaPage = document.querySelector(".criteria-page")
 const newDatePage = document.querySelector(".new-date-page")
 const savedDatePage = document.querySelector(".saved-date-page")
+const shuffleBtn = document.querySelector(".shuffle-btn")
 var restaurantCheckBox;
 //currently Movies isnt being used
 var eventsCheckBox;
+
+
 
 
 function shuffle(){
@@ -31,9 +34,9 @@ function shuffle(){
         if(usedRandomNumbers.indexOf(randomlySelected)==-1){
             controller = false;
             //--display content here 
-            var restuarantInfo = $('<div><p>'+restaurantList[0].restaurant_name+'</p></div>')
+            var restaurantInfo = $('<div><p>'+restaurantList[0].restaurant_name+'</p></div>')
             var eventInfo = $('<div><p>'+eventList[0].name+'</p></div>')
-            $('.restaurant-api').append(restuarantInfo);
+            $('.restaurant-api').append(restaurantInfo);
             $('.event-api').append(eventInfo);
         }
         //NEED TO BE DISPLAYED USING MODAL
@@ -77,7 +80,7 @@ savedDateBtn.onclick=()=>{
 nextBtn.onclick=()=>{
     usedRandomNumbers = []
     filterPage.classList.remove("filterActivate");
-    restaurantCheckBox = document.getElementById("Restuarants").checked;
+    restaurantCheckBox = document.getElementById("Restaurants").checked;
     eventsCheckBox = document.getElementById("Events").checked;
     criteriaPage.classList.add("criteriaActivate");
 }
@@ -109,7 +112,7 @@ createBtn.onclick=()=>{
         )
         .then(response => response.json())
         .then(function (result){ 
-            restuarantTest = result     // REMOVE ON FINAL PRODUCT - FOR TESTING PURPOSE ONLY
+            restaurantTest = result     // REMOVE ON FINAL PRODUCT - FOR TESTING PURPOSE ONLY
             for(var event in result["_embedded"].events){
                 eventList[event] = result["_embedded"].events[event];
             }
