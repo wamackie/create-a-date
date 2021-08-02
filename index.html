@@ -29,8 +29,6 @@
             <h3 class ="filter-title">Filter</h3>
             <label class="filter-list" for="Restuarants">Restuarants</label>
             <input type="checkbox" class="check-box" id="Restuarants">
-            <label class="filter-list" for="Movies">Movies</label>
-            <input type="checkbox" class="check-box" id="Movies">
             <!--We can add an event filter later if we want-->
             <label class="filter-list" for="Events">Events</label>
             <input type="checkbox" class="check-box" id="Events">
@@ -59,12 +57,7 @@
             <!--WE MAY NEED TO ADD NEXT/PREVIOUS BUTTONS FOR ALL OPTIONS-->
             <li class="restaurant-api">
                 <div class="yelp-container">
-                    <p>Api appends here!</p>
-                </div>
-            </li>
-            <h3 class="new-list">Movies</h3>
-            <li class ="movie-api">
-                <div class="fandango-container">
+                    <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</span>
                     <p>Api appends here!</p>
                 </div>
             </li>
@@ -72,12 +65,12 @@
             <li class="event-api">
                 
                 <div class="ticketmaster-container">
+                    <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</span>
                     <p>Api appends here!</p>
                 </div>
             </li>
         </ul>
             <!--Would like to add a feature where all options fade out as you save the date-->
-            <button class="shuffle-btn">Shuffle</button>
             <button class="save-date-btn">Save This Date</button>
     </div>
         <div class="saved-date-page">
@@ -92,24 +85,26 @@
                 <h3 class="save-list">Restaurants</h3>
                 <li class="saved-restaurant-api">
                     <div class="saved-yelp-container">
-                        <p>Api appends here!</p>
-                    </div>
-                </li>
-                <h3 class="save-list">Movies</h3>
-                <li class ="saved-movie-api">
-                    <div class="saved-fandango-container">
+                        <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</span>
                         <p>Api appends here!</p>
                     </div>
                 </li>
                 <h3 class="save-list">Events</h3>
                 <li class="saved-event-api">
                     <div class="saved-ticketmaster-container">
+                        <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>x</span>
                          <p>Api appends here!</p>
                     </div>
                 </li>
             </ul>
-            <div class="medium-flex-dir-row color saved">
+            <div class="medium-flex-dir-row color">
+                <!--Let's make it so this container appears when multiple dates are saved-->
+                <button class="next-btn2">Next</button>
+                <button class="previous-btn">Previous</button>
+            </div>
+            <div class="medium-flex-dir-row color">
                 <button class="save-date-btn2">Save</button>
+                <!--Maybe we could create a feature where the "X" icon will function as the delete btn?-->
                 <button class="delete-date-btn">Delete</button>
             </div>
         </div>

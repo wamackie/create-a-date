@@ -20,7 +20,6 @@ const newDatePage = document.querySelector(".new-date-page")
 const savedDatePage = document.querySelector(".saved-date-page")
 var restaurantCheckBox;
 //currently Movies isnt being used
-var moviesCheckBox;
 var eventsCheckBox;
 
 
@@ -58,10 +57,6 @@ function clearContent(){
     while(content.firstChild){
         content.removeChild(content.firstChild);
     }
-    content = document.querySelector('.fandango-container');
-    while(content.firstChild){
-        content.removeChild(content.firstChild);
-    }
     content = document.querySelector('.ticketmaster-container');
     while(content.firstChild){
         content.removeChild(content.firstChild);
@@ -83,7 +78,6 @@ nextBtn.onclick=()=>{
     usedRandomNumbers = []
     filterPage.classList.remove("filterActivate");
     restaurantCheckBox = document.getElementById("Restuarants").checked;
-    moviesCheckBox = document.getElementById("Movies").checked;
     eventsCheckBox = document.getElementById("Events").checked;
     criteriaPage.classList.add("criteriaActivate");
 }
