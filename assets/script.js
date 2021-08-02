@@ -34,8 +34,8 @@ function shuffle(){
         if(usedRandomNumbers.indexOf(randomlySelected)==-1){
             controller = false;
             //--display content here 
-            var restaurantInfo = $('<div><p>'+restaurantList[0].restaurant_name+'</p></div>')
-            var eventInfo = $('<div><p>'+eventList[0].name+'</p></div>')
+            var restaurantInfo = $('<div><p>'+restaurantList[randomlySelected].restaurant_name+'</p></div>')
+            var eventInfo = $('<div><p>'+eventList[randomlySelected].name+'</p></div>')
             $('.restaurant-api').append(restaurantInfo);
             $('.event-api').append(eventInfo);
         }
@@ -50,17 +50,12 @@ function shuffle(){
     console.log(usedRandomNumbers);
 }
 
-function reshuffle() {
-    clearContent()
-    shuffle();
-}
-
 function clearContent(){
-    var content = document.querySelector('.yelp-container');
+    var content = document.querySelector('.restaurant-api');
     while(content.firstChild){
         content.removeChild(content.firstChild);
     }
-    content = document.querySelector('.ticketmaster-container');
+    content = document.querySelector('.event-api');
     while(content.firstChild){
         content.removeChild(content.firstChild);
     }
@@ -85,6 +80,10 @@ nextBtn.onclick=()=>{
     criteriaPage.classList.add("criteriaActivate");
 }
 
+shuffleBtn.onclick=()=>{
+    shuffle();
+}
+
 //userInput (date + ZIP) page
 createBtn.onclick=()=>{
     var zipcode = $('#zipcode').val();
@@ -100,28 +99,24 @@ createBtn.onclick=()=>{
             for(var restaurant in result.data){
                 restaurantList[restaurant] = result.data[restaurant];  
           }
-        })
-
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-          };
-          
-    fetch(
-            "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&zip="+String(zipcode), requestOptions
-        )
-        .then(response => response.json())
-        .then(function (result){ 
-            restaurantTest = result     // REMOVE ON FINAL PRODUCT - FOR TESTING PURPOSE ONLY
-            for(var event in result["_embedded"].events){
-                eventList[event] = result["_embedded"].events[event];
-            }
-            //THIS HAS TO BE HERE OR PAGE LOADS BLANK, THEN POPULATES    ---Remove note on final product
-            shuffle();
-            criteriaPage.classList.remove("criteriaActivate");
-            newDatePage.classList.add("newDateActivate");
-        })
-        .catch(error => console.log('error', error));
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+        };
+        fetch(
+                "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&zip="+String(zipcode), requestOptions
+            )
+            .then(response => response.json())
+            .then(function (result){ 
+                for(var event in result["_embedded"].events){
+                    eventList[event] = result["_embedded"].events[event];
+                }
+                shuffle();
+                criteriaPage.classList.remove("criteriaActivate");
+                newDatePage.classList.add("newDateActivate");
+            })
+            .catch(error => console.log('error', error));
+            })
 }
 
 saveBtn.onclick=()=>{
