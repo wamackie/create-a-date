@@ -1,8 +1,11 @@
 //remove this variable in the future
-var test;
+var restuarantTest;
+var eventTest;
 
 var restaurantList = {};
 var eventList = {};
+var usedRandomNumbers = [];
+
 const newDateBtn = document.querySelector(".new-date-btn")
 const savedDateBtn = document.querySelector(".saved-date-btn")
 const nextBtn = document.querySelector(".next-btn")
@@ -15,6 +18,55 @@ const filterPage = document.querySelector(".filter-page")
 const criteriaPage = document.querySelector(".criteria-page")
 const newDatePage = document.querySelector(".new-date-page")
 const savedDatePage = document.querySelector(".saved-date-page")
+var restaurantCheckBox;
+//currently Movies isnt being used
+var moviesCheckBox;
+var eventsCheckBox;
+
+
+function shuffle(){
+    clearContent();
+    var randomlySelected = Math.floor(Math.random()*20);
+    var controller = true;
+    while(controller) {
+        if(usedRandomNumbers.indexOf(randomlySelected)==-1){
+            controller = false;
+            //--display content here 
+            var restuarantInfo = $('<div><p>'+restaurantList[0].restaurant_name+'</p></div>')
+            var eventInfo = $('<div><p>'+eventList[0].name+'</p></div>')
+            $('.restaurant-api').append(restuarantInfo);
+            $('.event-api').append(eventInfo);
+        }
+        //NEED TO BE DISPLAYED USING MODAL
+        else if (usedRandomNumbers.length==20) {
+            window.alert("no more to loop through")
+            controller = true;
+        }
+        else {randomlySelected = Math.floor(Math.random()*20)}
+    }
+    usedRandomNumbers.push(randomlySelected);
+    console.log(usedRandomNumbers);
+}
+
+function reshuffle() {
+    clearContent()
+    shuffle();
+}
+
+function clearContent(){
+    var content = document.querySelector('.yelp-container');
+    while(content.firstChild){
+        content.removeChild(content.firstChild);
+    }
+    content = document.querySelector('.fandango-container');
+    while(content.firstChild){
+        content.removeChild(content.firstChild);
+    }
+    content = document.querySelector('.ticketmaster-container');
+    while(content.firstChild){
+        content.removeChild(content.firstChild);
+    }
+}
 
 newDateBtn.onclick=()=>{
     filterPage.classList.add("filterActivate");
@@ -28,46 +80,51 @@ savedDateBtn.onclick=()=>{
 
 //Filter parameter page 
 nextBtn.onclick=()=>{
+    usedRandomNumbers = []
     filterPage.classList.remove("filterActivate");
+    restaurantCheckBox = document.getElementById("Restuarants").checked;
+    moviesCheckBox = document.getElementById("Movies").checked;
+    eventsCheckBox = document.getElementById("Events").checked;
     criteriaPage.classList.add("criteriaActivate");
 }
 
 //userInput (date + ZIP) page
 createBtn.onclick=()=>{
     var zipcode = $('#zipcode').val();
+    
     fetch(
-        "https://api.documenu.com/v2/restaurants/zip_code/"+zipcode+"?size=30&key=a33fecb2f255c04e008c528cf89286a2"
+        "https://api.documenu.com/v2/restaurants/zip_code/"+zipcode+"?size=20&key=a33fecb2f255c04e008c528cf89286a2"
         )
-        .then(function(response1) {
-          return response1.json();
-        })
         .then(function(response) {
-          for(var restaurant in response.data){
-              // console.log(test.data[restaurant])
-              restaurantList[restaurant] = response.data[restaurant];  
+            return response.json();
+        })
+        .then(function(result) {
+            eventTest = result     // REMOVE ON FINAL PRODUCT - FOR TESTING PURPOSE ONLY
+            for(var restaurant in result.data){
+                restaurantList[restaurant] = result.data[restaurant];  
           }
         })
 
-    var apiUrl = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=0JGGR2SJH46d1Ckem69HRE9prsVCVkv1&postalCode="+zipcode+""
-    fetch(apiUrl)
-      .then(function (response) {
-        console.log(response.status);
-        //  Conditional for the the response.status.
-        if (response.status !== 200) {
-        // Place the response.status on the page.
-        console.log(response.status)
-        }
-        return response.json();
-      })
-        .then(function (data) {
-        // Make sure to look at the response in the console and read how 404 response is structured.
-        for(var event in data["_embedded"].events){
-          eventList[event] = data["_embedded"].events[event];
-        }
-      })
-
-    criteriaPage.classList.remove("criteriaActivate");
-    newDatePage.classList.add("newDateActivate");
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+    fetch(
+            "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&zip="+String(zipcode), requestOptions
+        )
+        .then(response => response.json())
+        .then(function (result){ 
+            restuarantTest = result     // REMOVE ON FINAL PRODUCT - FOR TESTING PURPOSE ONLY
+            for(var event in result["_embedded"].events){
+                eventList[event] = result["_embedded"].events[event];
+            }
+            //THIS HAS TO BE HERE OR PAGE LOADS BLANK, THEN POPULATES    ---Remove note on final product
+            shuffle();
+            criteriaPage.classList.remove("criteriaActivate");
+            newDatePage.classList.add("newDateActivate");
+        })
+        .catch(error => console.log('error', error));
 }
 
 saveBtn.onclick=()=>{
@@ -77,15 +134,3 @@ saveBtn.onclick=()=>{
 saveBtn2.onclick=()=>{
     location.reload();
 }
-
-
-
-
-
-
-
-
-
-
-
-
