@@ -151,7 +151,3 @@ createBtn.onclick=()=>{
 saveBtn.onclick=()=>{
     location.reload();
 }
-
-saveBtn2.onclick=()=>{
-    location.reload();
-}

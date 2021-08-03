@@ -66,9 +66,6 @@ margin-top: 0%;
 border-radius: 20%;
 text-align: center;
 font-weight: 700;
-
-
-
 }
 
 .new-date-btn, .saved-date-btn{
@@ -226,6 +223,12 @@ background-color: var(--quinary-color);
 margin: 0%;
 }
 
+.api-text{
+font-size: 28px;
+text-align: center;
+color: var(--primary-color);
+background-color: var(--quarternary-color);
+}
 .new-list{
 font-size: 20px;
 text-align: center;
@@ -251,12 +254,12 @@ color: var(--quarternary-color);
 
 .save-date-btn{
 text-align: center;
-margin-top:4%;
+margin-top:2%;
 margin-left: 42%;
-font-size: 30px;
+font-size: 28px;
 background-color: var(--tertiary-color);
 box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-padding: 20px;
+padding: 15px;
 color: var(--primary-color);
 background-color: var(--tertiary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
@@ -265,11 +268,12 @@ border-radius: 0 15px;
 
 .shuffle-btn{
   text-align: center;
+  margin-top: 1%;
   margin-left: 45%;
-  font-size: 30px;
+  font-size: 28px;
   background-color: var(--tertiary-color);
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-  padding: 20px;
+  padding: 15px;
   color: var(--primary-color);
   background-color: var(--tertiary-color);
   text-shadow: 1px 2px rgba(199,81,70, 0.5);
@@ -299,7 +303,7 @@ font-weight: 600;
 text-align: center;
 padding: 20px;
 color: var(--primary-color);
-text-shadow: 2px 4px rgba(199,81,70, 0.5);
+text-shadow: 2px 4px rgba(129,23,27, 0.5);
 border-radius: 20% 20% 0 0;
 border-bottom: 8px solid var(--primary-color);
 }
@@ -312,7 +316,7 @@ background-color: var(--secondary-color);
 padding: 5px;
 outline: none;
 border: none;
-text-shadow: 1px 2px rgba(199,81,70, 0.5);
+text-shadow: 2px 4px rgba(129,23,27, 0.5);
 }
 
 li.saved-restaurant-api::marker{
@@ -338,9 +342,11 @@ background-color: var(--secondary-color);
 .date-display, .zip-display{
 background-color: var(--tertiary-color);
 text-align: center;
+color: var(--primary-color);
+font-size: 20px;
 }
 
-.save-date-btn2, .delete-date-btn{
+.delete-date-btn{
 font-size: 50px;
 text-align: center;
 padding: 20px;
@@ -352,387 +358,273 @@ box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 color: var(--primary-color);
 background-color: var(--tertiary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
-border-radius:15px;
+border-radius:0px 15px;
 }
-
-/*.next-btn2, .previous-btn{
-padding: 10px;
-background-color: var(--quinary-color);
-font-size: 20px;
-color: var(--primary-color);
-margin-left: 18%;
-box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.3);
-border-radius: 0px 15px;
-text-shadow: 1px 2px rgba(199,81,70, 0.5);
-}*/
 
 .color{
 background-color: var(--tertiary-color);
 }
 
-@media screen and (max-width: 380px) {
-:root {
-    --primary-color: #ea8c55;
-    --secondary-color: #c75146;
-    --tertiary-color: #ad2e24;
-    --quarternary-color: #81171b;
-    --quinary-color: #540804;
-  }
-
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Baloo Chettan 2', sans-serif;
-    background-color: var(--quarternary-color);
-}
-
-
-
-.title-page, .filter, .criteria-page, .new-date-page, .saved-date-page{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-
-}
-.medium-flex-dir-row {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row; }
-
-.filter-page.filterActivate, 
-.criteria-page.criteriaActivate,
-.new-date-page.newDateActivate,
-.saved-date-page.savedDateActivate{
-  display: inline;
-}
-
-.title-page.titleDeactivate{
-  display: none;
-}
-
+@media screen and (max-width: 1300px) {
 .title-page{
   width: 85%;
-  padding: 15px;
-  background-color: var(--secondary-color);
-  border-radius: 20%;
 }
 
-h1 {
-  text-shadow: 2px 2px rgba(234,140,85, 0.5);
-}
 
 .title{
-  background-color: var(--secondary-color);
-  color: var(--quarternary-color);
-  padding: 10px;
-  font-size: 40px;
+  margin-left: 2%;
+  font-size: 55px;
   margin-top: 3%;
-  border-radius: 20%;
-  text-align: center;
-  font-weight: 700;
-
-
-
 }
 
 .new-date-btn, .saved-date-btn{
-  padding: 18px;
-  background-color: var(--quinary-color);
-  color: var(--primary-color);
-  margin-left: 8.7%;
+  padding: 15px;
+  font-size: 30px;
+  margin-left: 17%;
   margin-bottom: 5%;
-  text-align: center;
-  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 0px 15px;
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-}
-
-.filter-page{
-  display: none;
-}
-
-.filter-title{
-  background-color: var(--tertiary-color);
-  font-size: 40px;
-  font-weight: 600;
-  text-align: center;
-  color: var(--primary-color);
-  text-shadow: 2px 4px rgba(199,81,70, 0.5);
-  border-radius: 20% 20% 0 0;
-  border-bottom: 5px solid var(--primary-color);
+  width: 25%;
 }
 
 .filter{
-  width: 50%;
-  background-color: var(--quinary-color);
-  border-radius: 20%;
-  top: 40%;
+  height: 50%;
 }
 
 
 .filter .filter-list{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  text-align: center;
-  width: 60%;
-  font-size: 20px;
-  margin-left: 36px;
-  color: var(--primary-color);
-  background-color: var(--quinary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+  margin-top:5%;
+  font-size: 45px;
 }
 
 input.check-box{
-  padding: 50px;
-  margin-left: 46%;
+  margin-left: 49%;
 }
 
 .next-btn{
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
   padding: 30px;
-  font-size: 30px;
-  color: var(--primary-color);
-  background-color: var(--tertiary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-  border-radius: 0px 15px;
+  font-size: 50px;
 }
 
 .criteria-page{
   width: 85%;
   height: 30%;
-  background-color: var(--quinary-color);
-  border-radius: 20%;
-  top: 40%;
-  display: none;
-}
-
-.criteria-title{
-  background-color: var(--tertiary-color);
-  font-size: 40px;
-  font-weight: 600;
-  text-align: center;
-  color: var(--primary-color);
-  text-shadow: 2px 4px rgba(199,81,70, 0.5);
-  border-radius: 20% 20% 0 0;
-  border-bottom: 5px solid var(--primary-color);
-}
-
-.criteria-list{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  text-align: center;
-  width: 60%;
-  font-size: 20px;
-  margin-left: 65px;
-  color: var(--primary-color);
-  background-color: var(--quinary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-}
-
-.user-criteria{
-  background-color: var(--quinary-color);
 }
 
 input#day-of, #zipcode{
-  padding: 15px;
-  border: 20px solid var(--quinary-color);
-  background-color: var(--primary-color);
-  
+  padding: 25px;
+  font-size: 30px; 
 }
 
 button.create-date-btn{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 10%;
-  margin-left: 31px;
-  font-size: 30px;
-  background-color: var(--tertiary-color);
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  color: var(--primary-color);
-  background-color: var(--tertiary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-  border-radius: 0 15px;
-}
-
-.new-date-page {
-  width: 90%;
-  height: 80%;
-  background-color: var(--quinary-color);
-  border-radius: 20%;
-  top: 45%;
-  display: none;
-}
-
-.new-title{
-  background-color: var(--tertiary-color);
-  font-size: 40px;
-  font-weight: 600;
-  text-align: center;
-  padding: 10px;
-  color: var(--primary-color);
-  text-shadow: 2px 4px rgba(199,81,70, 0.5);
-  border-radius: 20% 20% 0 0;
-  border-bottom: 5px solid var(--primary-color);
-}
-
-.api-page, .saved-api-page{
-  background-color: var(--quinary-color);
-  margin: 0%;
+  margin-top: 5%;
+  margin-left: 26%;
+  font-size: 56px;
 }
 
 .new-list{
-  font-size: 20px;
-  text-align: center;
-  color: var(--primary-color);
-  background-color: var(--quarternary-color);
-  padding: 5px;
-  outline: none;
-  border: none;
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-
-}
-
-
-li.restaurant-api::marker{
-  color: var(--quarternary-color);
-}
-li.movie-api::marker{
-  color: var(--quarternary-color);
-}
-li.event-api::marker{
-  color: var(--quarternary-color);
+  font-size: 40px;
 }
 
 .save-date-btn{
-  text-align: center;
-  margin-top:45%;
-  margin-left: 15.5%;
-  font-size: 30px;
-  background-color: var(--tertiary-color);
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  color: var(--primary-color);
-  background-color: var(--tertiary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-  border-radius: 0 15px;
+  margin-top:5%;
+  margin-left: 33%;
+  font-size: 60px;
 }
 
 .shuffle-btn{
-  text-align: center;
-  margin-left: 45%;
-  font-size: 30px;
-  background-color: var(--tertiary-color);
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  color: var(--primary-color);
-  background-color: var(--tertiary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-  border: 5px solid var(--primary-color);
-  border-radius: 0 15px;
+  margin-left: 42%;
+  margin-top:5%;
+  font-size: 50px;
 }
 
 .saved-date-page{
 width: 90%;
 height: 95%;
-background-color: var(--tertiary-color);
-border-radius: 15%;
-top: 50%;
-display: none;
 }
 
 .save-title{
-  background-color: var(--secondary-color);
-  font-size: 30px;
-  font-weight: 600;
-  text-align: center;
-  padding: 20px;
-  color: var(--primary-color);
-  text-shadow: 2px 4px rgba(199,81,70, 0.5);
-  border-radius: 20% 20% 0 0;
-  border-bottom: 8px solid var(--primary-color);
+  font-size: 50px;
 }
 
 .save-list{
-  margin-top: 5%;
-  font-size: 20px;
-  text-align: center;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
-  padding: 5px;
-  outline: none;
-  border: none;
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-}
-
-li.saved-restaurant-api::marker{
-  color: var(--quarternary-color);
-}
-li.saved-movie-api::marker{
-  color: var(--quarternary-color);
-}
-li.saved-event-api::marker{
-  color: var(--quarternary-color);
-}
-
-.saved-api-page{
-  background-color: var(--tertiary-color);
+  margin-top: 2%;
+  font-size: 40px;
 }
 
 .date-day, .date-zip{
-  text-align: center;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
+  font-size: 30px;
 }
 
-.date-display, .zip-display{
-  background-color: var(--tertiary-color);
-  text-align: center;
-}
-
-.save-date-btn2, .delete-date-btn{
-  font-size: 28px;
-  text-align: center;
+.delete-date-btn{
+  font-size: 60px;
+  width: 20%;
   padding: 10px;
-  margin-top:8%;
-  margin-left: 15%;
-  border: 5px solid var(--primary-color);
-  background-color: var(--tertiary-color);
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-  color: var(--primary-color);
-  background-color: var(--tertiary-color);
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
-  border-radius:15px;
+  margin-top:4%;
+  margin-left: 40%;
+}
 }
 
-.next-btn2, .previous-btn{
-  padding: 10px;
-  background-color: var(--quinary-color);
-  font-size: 20px;
-  color: var(--primary-color);
-  margin-left: 18%;
-  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 0px 15px;
-  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+@media screen and (max-width: 860px) {
+  .title{
+    margin-left: 1%;
+    font-size: 58px;
+  }
+  
+  .new-date-btn, .saved-date-btn{
+    padding: 19px;
+    margin-left: 7%;
+    width: 39%;
+  }
+  
+  button.create-date-btn{
+    margin-left: 13%;
+  }
+  
+  .save-date-btn{
+    margin-left: 30%;
+    font-size: 40px;
+  }
+  
+  .shuffle-btn{
+    margin-left: 38%;
+    font-size: 40px;
+  }
+
+  .delete-date-btn{
+    font-size: 40px;
+    width: 25%;
+    margin-left: 38%;
+  }
 }
 
-.color{
-  background-color: var(--tertiary-color);
+@media screen and (max-width: 650px) {
+  .title{
+    font-size: 45px;
+    margin-top: 3%;
+  }
+  
+  .new-date-btn, .saved-date-btn{
+    font-size: 25px;
+    margin-left: 5%;
+    margin-bottom: 4%;
+    width: 43%;
+  }
+  
+  .filter{
+    width: 75%;
+  }
+  
+  input.check-box{
+    margin-left: 50%;
+  }
+  
+  .criteria-page{
+    top: 30%;
+  }
+  
+  button.create-date-btn{
+    margin-left: 18%;
+    font-size: 35px;
+  }
+  
+  .new-list{
+    font-size: 35px;
+  }
+
+  .new-title{
+    font-size: 35px;
+  }
+  
+  .save-date-btn{
+    margin-left: 25%;
+    font-size: 35px;
+  }
+  
+  .shuffle-btn{
+    margin-left: 35%;
+    font-size: 35px;
+  }
+  
+  .save-title{
+    font-size: 40px;
+  }
+  
+  .delete-date-btn{
+    font-size: 40px;
+    width: 40%;
+    padding: 20px;
+    margin-left: 30%;
+  }
 }
+
+@media screen and (max-width: 450px) {
+  .title{
+    font-size: 33px;
+    margin-top: 3%;
+    padding: 0%;
+    margin: 0%;
+  }
+  
+  .new-date-btn, .saved-date-btn{
+    padding: 10px;
+    font-size: 20px;
+    margin-left: 4%;
+    margin-bottom: 4%;
+    width: 44%;
+  }
+  
+  .filter{
+    width: 75%;
+  }
+  
+  .filter .filter-list{
+    font-size: 35px;
+  }
+  
+  input.check-box{
+    margin-left: 50%;
+  }
+  
+  .criteria-page{
+    top: 30%;
+  }
+  
+  button.create-date-btn{
+    margin-top: 7%;
+    margin-left: 9%;
+    font-size: 28px;
+    padding: 20px;
+  }
+  
+  .new-list{
+    font-size: 35px;
+  }
+
+  .new-title{
+    font-size: 35px;
+  }
+  
+  .save-date-btn{
+    margin-left: 18%;
+    font-size: 30px;
+    padding: 10px;
+  }
+  
+  .shuffle-btn{
+    margin-left: 32%;
+    font-size: 30px;
+    padding: 10px;
+  }
+  
+  .save-title{
+    font-size: 40px;
+  }
+  
+  .delete-date-btn{
+    font-size: 30px;
+    width: 45%;
+    padding: 20px;
+    margin-left: 30%;
+  }
 }
 
 
