@@ -34,10 +34,29 @@ function shuffle(){
         if(usedRandomNumbers.indexOf(randomlySelected)==-1){
             controller = false;
             //--display content here 
-            var restaurantInfo = $('<div><p>'+restaurantList[0].restaurant_name+'</p></div>')
-            var eventInfo = $('<div><p>'+eventList[0].name+'</p></div>')
+            var restaurantInfo = $('<div><p>'+restaurantList[randomlySelected].restaurant_name+'</p></div>')
+            var restaurantAddress = $('<div><p>'+restaurantList[randomlySelected].address.formatted+'</p></div>')
+            var restaurantPhone = $('<div><p>'+restaurantList[randomlySelected].restaurant_phone+'</p></div>')
+            var storeHours = (restaurantList[randomlySelected].hours)
+            var restaurantHours = $('<div><p>'+storeHours+'</p></div>')
+            
+            var eventInfo = $('<div><p>'+eventList[randomlySelected].name+'</p></div>')
+            var eventDates = $('<div><p>'+eventList[randomlySelected].dates.start.localDate+'</p></div>')
+            var eventVenue = $('<div><p>'+eventList[randomlySelected]._embedded.venues.markets.name+'</p></div>')
+            var eventPrice = $('<div><p>'+eventList[randomlySelected].priceRanges.min+'</p></div>')
+            var eventTicketInfo = $('<div><p>'+eventList[randomlySelected].ticketLimit.info+'</p></div>')
+
             $('.restaurant-api').append(restaurantInfo);
+            $('.restaurant-api').append(restaurantAddress);
+            $('.restaurant-api').append(restaurantPhone);
+            if (storeHours != ""){
+                $('.restaurant-api').append(restaurantHours);
+            }
             $('.event-api').append(eventInfo);
+            $('.event-api').append(eventDates);
+            $('.event-api').append(eventVenue);
+            $('.event-api').append(eventPrice);
+            $('.event-api').append(eventTicketInfo);
         }
         //NEED TO BE DISPLAYED USING MODAL
         else if (usedRandomNumbers.length==20) {
