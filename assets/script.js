@@ -33,30 +33,40 @@ function shuffle(){
     while(controller) {
         if(usedRandomNumbers.indexOf(randomlySelected)==-1){
             controller = false;
-            //--display content here 
-            var restaurantInfo = $('<div><p>'+restaurantList[randomlySelected].restaurant_name+'</p></div>')
-            var restaurantAddress = $('<div><p>'+restaurantList[randomlySelected].address.formatted+'</p></div>')
-            var restaurantPhone = $('<div><p>'+restaurantList[randomlySelected].restaurant_phone+'</p></div>')
-            var storeHours = (restaurantList[randomlySelected].hours)
-            var restaurantHours = $('<div><p>'+storeHours+'</p></div>')
+            //--data pulling from Yelp api includes restaurant name, address, phone, and hours of operations
+            var restaurantInfo = $('<div><p>' + restaurantList[randomlySelected].restaurant_name + '</p></div>');
+            var restaurantAddress = $('<div><p>' + restaurantList[randomlySelected].address.formatted + '</p></div>');
+            var restaurantPhone = $('<div><p>'+ restaurantList[randomlySelected].restaurant_phone + '</p></div>');
+            var storeHours = (restaurantList[randomlySelected].hours);
+            var restaurantHours = $('<div><p>'+ storeHours +'</p></div>');
             
-            var eventInfo = $('<div><p>'+eventList[randomlySelected].name+'</p></div>')
-            var eventDates = $('<div><p>'+eventList[randomlySelected].dates.start.localDate+'</p></div>')
-            var eventVenue = $('<div><p>'+eventList[randomlySelected]._embedded.venues.markets+'</p></div>')
-            var eventPrice = $('<div><p>'+eventList[randomlySelected].priceRanges+'</p></div>')
-            var eventTicketInfo = $('<div><p>'+eventList[randomlySelected].ticketLimit.info+'</p></div>')
-
+            
+            //--data pulling from Ticketmaster api includes event name, type of event, venue name, address, price of tickets and information about ticket limits
+            var eventInfo = $('<div><p>'+ eventList[randomlySelected].name + '</p></div>');
+            var eventType = $('<div><p>'+ eventList[randomlySelected].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelected].classifications['indexOf', 0].subGenre.name + '</p></div>');
+            var eventDates = $('<div><p>' + eventList[randomlySelected].dates.start.localDate + '</p></div>');
+            var eventVenue = $('<div><p>' + eventList[randomlySelected]._embedded.venues['indexOf', 0].name + '</p></div>');
+            var eventVenueAddress = $('<div><p>' + eventList[randomlySelected]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelected]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelected]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+            var eventPrice = $('<div><p> $' + eventList[randomlySelected].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelected].priceRanges['indexOf', 0].max + ' each</p></div>');
+            var eventTicketInfo = $('<div><p>' + eventList[randomlySelected].ticketLimit.info + '</p></div>');
+            
+            // append restaurant info to restaurant api
             $('.restaurant-api').append(restaurantInfo);
             $('.restaurant-api').append(restaurantAddress);
             $('.restaurant-api').append(restaurantPhone);
             if (storeHours != ""){
                 $('.restaurant-api').append(restaurantHours);
             }
+
+            // append event info to event api
             $('.event-api').append(eventInfo);
+            $('.event-api').append(eventType);
             $('.event-api').append(eventDates);
             $('.event-api').append(eventVenue);
+            $('.event-api').append(eventVenueAddress);
             $('.event-api').append(eventPrice);
             $('.event-api').append(eventTicketInfo);
+            
         }
         //NEED TO BE DISPLAYED USING MODAL
         else if (usedRandomNumbers.length==20) {
@@ -106,7 +116,7 @@ shuffleBtn.onclick=()=>{
 //userInput (date + ZIP) page
 createBtn.onclick=()=>{
     var zipcode = $('#zipcode').val();
-    
+        
     fetch(
         "https://api.documenu.com/v2/restaurants/zip_code/"+zipcode+"?size=20&key=a33fecb2f255c04e008c528cf89286a2"
         )
