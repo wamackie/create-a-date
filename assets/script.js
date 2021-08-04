@@ -22,9 +22,9 @@ const savedDatePage = document.querySelector(".saved-date-page")
 const shuffleBtn = document.querySelector(".shuffle-btn")
 var restaurantCheckBox;
 var eventsCheckBox;
-var openModalButtons = document.querySelectorAll("[data-modal-target]");
-var closeModalButtons = document.querySelector("data-close-button");
+var closeModalButtons = document.querySelector("[data-close-button]");
 var overlay = document.getElementById("overlay");
+var modal = document.getElementById("modal");
 
 
 
@@ -144,7 +144,7 @@ nextBtn.onclick=()=>{
     restaurantCheckBox = document.getElementById("Restaurants").checked;
     eventsCheckBox = document.getElementById("Events").checked;
     if (restaurantCheckBox == false && eventsCheckBox == false) {
-        //MODAL FOR ONE CHECK BOX MUST BE SELECTED
+        openModal("Please select one!")
     }
     else {
         filterPage.classList.remove("filterActivate");
@@ -161,6 +161,8 @@ shuffleBtn.onclick=()=>{
 createBtn.onclick=()=>{
     var city = $('#city').val();
     
+    //API 1 - a33fecb2f255c04e008c528cf89286a2
+    //API 2 -
     fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
     .then(response => response.json())
     .then(function (result){
@@ -169,7 +171,7 @@ createBtn.onclick=()=>{
         var lon =  result['coord'].lon;
 
         fetch(
-            "https://api.documenu.com/v2/restaurants/search/geo?lat="+lat+"&lon="+lon+"&distance=20&key=a33fecb2f255c04e008c528cf89286a2&size=20"
+            "https://api.documenu.com/v2/restaurants/search/geo?lat="+lat+"&lon="+lon+"&distance=20&key=7a024a037f7d9e36de172881e2f7b497&size=20"
             )
             .then(function(response) {
                 return response.json();
@@ -196,15 +198,14 @@ createBtn.onclick=()=>{
                     criteriaPage.classList.remove("criteriaActivate");
                     newDatePage.classList.add("newDateActivate");
                 })
-                .catch(error => console.log('error', error));
                 })
-    })
+    }).catch(error => openModal("Incorrect city"));
 }
 
-openModalButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        var modal = document.querySelector(button.dataset.modalTarget);
-        openModal(modal);
+closeModalButtons.addEventListener("click", () => {
+    var modals = document.querySelectorAll(".modal.active");
+    modals.forEach(modal => {
+        closeModal(modal);
     });
 });
 
@@ -215,27 +216,20 @@ overlay.addEventListener("click", () => {
     });
 });
 
-closeModalButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        var modal = button.closest(".modal");
-        closeModal(modal);
-     });
-});
+//open popup window
+function openModal(errorMessage){
+    var message = $('<p>'+errorMessage+'</p>');
+    $('.modal-text').append(message);
 
-function openModal(modal) {
-    if(modal == null) 
-    return;
     modal.classList.add("active");
     overlay.classList.add("active");
 }
-
-function closeModal(modal) {
-    if (modal == null)
-    return;
+  
+  //close popup window
+function closeModal(){
     modal.classList.remove("active");
     overlay.classList.remove("active");
 }
-
 saveBtn.onclick=()=>{
     location.reload();
 }
