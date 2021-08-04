@@ -4,7 +4,9 @@ var eventTest;
 
 var restaurantList = {};
 var eventList = {};
-var usedRandomNumbers = [];
+var usedRandomNumbersRestaurant = [];
+var usedRandomNumbersEvent = [];
+
 
 const newDateBtn = document.querySelector(".new-date-btn")
 const savedDateBtn = document.querySelector(".saved-date-btn")
@@ -24,32 +26,39 @@ var restaurantCheckBox;
 var eventsCheckBox;
 
 
-
+Object.size = function(obj) {
+    var size = 0,
+      key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
 
 function shuffle(){
     clearContent();
-    var randomlySelected = Math.floor(Math.random()*20);
-    var controller = true;
-    while(controller) {
-        if(usedRandomNumbers.indexOf(randomlySelected)==-1){
-            controller = false;
+
+
+    var restaurantSize = Object.size(restaurantList);
+    var eventSize = Object.size(eventList);
+
+    var randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize);
+    var randomlySelectedEvent = Math.floor(Math.random()*eventSize);
+    console.log(restaurantSize + "  vs   " +randomlySelectedRestaurant);
+    console.log(eventSize + "  vs   "+ randomlySelectedEvent);
+    var controller1 = true;
+    var controller2 = true;
+    while(controller1) {
+        console.log('loop1')
+        if(usedRandomNumbersRestaurant.indexOf(randomlySelectedRestaurant)==-1 && restaurantSize != 0){
+            controller1 = false;
             //--data pulling from Yelp api includes restaurant name, address, phone, and hours of operations
-            var restaurantInfo = $('<div><p>' + restaurantList[randomlySelected].restaurant_name + '</p></div>');
-            var restaurantAddress = $('<div><p>' + restaurantList[randomlySelected].address.formatted + '</p></div>');
-            var restaurantPhone = $('<div><p>'+ restaurantList[randomlySelected].restaurant_phone + '</p></div>');
-            var storeHours = (restaurantList[randomlySelected].hours);
+            var restaurantInfo = $('<div><p>' + restaurantList[randomlySelectedRestaurant].restaurant_name + '</p></div>');
+            var restaurantAddress = $('<div><p>' + restaurantList[randomlySelectedRestaurant].address.formatted + '</p></div>');
+            var restaurantPhone = $('<div><p>'+ restaurantList[randomlySelectedRestaurant].restaurant_phone + '</p></div>');
+            var storeHours = (restaurantList[randomlySelectedRestaurant].hours);
             var restaurantHours = $('<div><p>'+ storeHours +'</p></div>');
-            
-            
-            //--data pulling from Ticketmaster api includes event name, type of event, venue name, address, price of tickets and information about ticket limits
-            var eventInfo = $('<div><p>'+ eventList[randomlySelected].name + '</p></div>');
-            var eventType = $('<div><p>'+ eventList[randomlySelected].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelected].classifications['indexOf', 0].subGenre.name + '</p></div>');
-            var eventDates = $('<div><p>' + eventList[randomlySelected].dates.start.localDate + '</p></div>');
-            var eventVenue = $('<div><p>' + eventList[randomlySelected]._embedded.venues['indexOf', 0].name + '</p></div>');
-            var eventVenueAddress = $('<div><p>' + eventList[randomlySelected]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelected]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelected]._embedded.venues['indexOf', 0].state.name + '</p></div>');
-            var eventPrice = $('<div><p> $' + eventList[randomlySelected].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelected].priceRanges['indexOf', 0].max + ' each</p></div>');
-            var eventTicketInfo = $('<div><p>' + eventList[randomlySelected].ticketLimit.info + '</p></div>');
-            
+
             // append restaurant info to restaurant api
             $('.restaurant-api').append(restaurantInfo);
             $('.restaurant-api').append(restaurantAddress);
@@ -57,6 +66,30 @@ function shuffle(){
             if (storeHours != ""){
                 $('.restaurant-api').append(restaurantHours);
             }
+            
+        }
+        else if (restaurantSize == 0){
+            controller1 = false;
+        }
+        else if (usedRandomNumbersRestaurant.length==restaurantSize) {
+            window.alert("no more to loop through")
+            controller1 = true;
+        }
+        else {randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize)}
+    }
+    while(controller2) {
+        console.log('loop2')
+        if(usedRandomNumbersEvent.indexOf(randomlySelectedEvent)==-1 && eventSize != 0){
+            controller2 = false;
+            //--data pulling from Ticketmaster api includes event name, type of event, venue name, address, price of tickets and information about ticket limits
+            var eventInfo = $('<div><p>'+ eventList[randomlySelectedEvent].name + '</p></div>');
+            var eventType = $('<div><p>'+ eventList[randomlySelectedEvent].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelectedEvent].classifications['indexOf', 0].subGenre.name + '</p></div>');
+            var eventDates = $('<div><p>' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
+            var eventVenue = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
+            var eventVenueAddress = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+            var eventPrice = $('<div><p> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
+            
+
 
             // append event info to event api
             $('.event-api').append(eventInfo);
@@ -65,17 +98,22 @@ function shuffle(){
             $('.event-api').append(eventVenue);
             $('.event-api').append(eventVenueAddress);
             $('.event-api').append(eventPrice);
-            $('.event-api').append(eventTicketInfo);
-            
         }
-        //NEED TO BE DISPLAYED USING MODAL
-        else if (usedRandomNumbers.length==20) {
+        else if(eventSize == 0){
+            console.log("no events")
+            controller2 = false;
+        }
+        else if (usedRandomNumbersEvent.length==eventSize) {
             window.alert("no more to loop through")
-            controller = true;
+            controller2 = true;
         }
-        else {randomlySelected = Math.floor(Math.random()*20)}
+        else {randomlySelectedEvent = Math.floor(Math.random()*eventSize)}
     }
-    usedRandomNumbers.push(randomlySelected);
+        //NEED TO BE DISPLAYED USING MODAL
+
+    
+    usedRandomNumbersRestaurant.push(randomlySelectedRestaurant);
+    usedRandomNumbersEvent.push(randomlySelectedEvent);
     console.log(usedRandomNumbers);
 }
 
@@ -115,37 +153,47 @@ shuffleBtn.onclick=()=>{
 
 //userInput (date + ZIP) page
 createBtn.onclick=()=>{
-    var zipcode = $('#zipcode').val();
-        
-    fetch(
-        "https://api.documenu.com/v2/restaurants/zip_code/"+zipcode+"?size=20&key=a33fecb2f255c04e008c528cf89286a2"
-        )
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(result) {
-            eventTest = result     // REMOVE ON FINAL PRODUCT - FOR TESTING PURPOSE ONLY
-            for(var restaurant in result.data){
-                restaurantList[restaurant] = result.data[restaurant];  
-          }
-            var requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-        };
+    var city = $('#city').val();
+
+    fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
+    .then(response => response.json())
+    .then(function (result){
+        eventTest = result
+        var lat = result['coord'].lat;
+        var lon =  result['coord'].lon;
+
         fetch(
-                "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&zip="+String(zipcode), requestOptions
+            "https://api.documenu.com/v2/restaurants/search/geo?lat="+lat+"&lon="+lon+"&distance=20&key=a33fecb2f255c04e008c528cf89286a2&size=20"
             )
-            .then(response => response.json())
-            .then(function (result){ 
-                for(var event in result["_embedded"].events){
-                    eventList[event] = result["_embedded"].events[event];
-                }
-                shuffle();
-                criteriaPage.classList.remove("criteriaActivate");
-                newDatePage.classList.add("newDateActivate");
+            .then(function(response) {
+                return response.json();
             })
-            .catch(error => console.log('error', error));
-            })
+            .then(function(result) {
+                for(var restaurant in result.data){
+                    restaurantList[restaurant] = result.data[restaurant];  
+              }
+                var requestOptions = {
+                    method: 'GET',
+                    redirect: 'follow'
+            };
+            fetch(
+                    "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&latlong="+lat+","+lon+"", requestOptions
+                )
+                .then(response => response.json())
+                .then(function (result){ 
+                    if (result.page.totalElements != 0 ){
+                        for(var event in result["_embedded"].events){
+                            eventList[event] = result["_embedded"].events[event];
+                        }
+                    }
+                    shuffle();
+                    criteriaPage.classList.remove("criteriaActivate");
+                    newDatePage.classList.add("newDateActivate");
+                })
+                .catch(error => console.log('error', error));
+                })
+    })
+    
 }
 
 saveBtn.onclick=()=>{

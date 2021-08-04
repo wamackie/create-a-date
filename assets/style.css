@@ -173,7 +173,7 @@ text-shadow: 1px 2px rgba(199,81,70, 0.5);
 background-color: var(--quinary-color);
 }
 
-input#day-of, #zipcode{
+input#day-of, #city{
 padding: 15px;
 border: 20px solid var(--quinary-color);
 background-color: var(--primary-color);
@@ -409,7 +409,7 @@ input.check-box{
   height: 30%;
 }
 
-input#day-of, #zipcode{
+input#day-of, #city{
   padding: 25px;
   font-size: 30px; 
 }
