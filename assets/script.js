@@ -37,17 +37,15 @@ Object.size = function(obj) {
 
 function shuffle(){
     clearContent();
-
-
     var restaurantSize = Object.size(restaurantList);
     var eventSize = Object.size(eventList);
-
     var randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize);
     var randomlySelectedEvent = Math.floor(Math.random()*eventSize);
     console.log(restaurantSize + "  vs   " +randomlySelectedRestaurant);
     console.log(eventSize + "  vs   "+ randomlySelectedEvent);
     var controller1 = true;
     var controller2 = true;
+
     while(controller1) {
         console.log('loop1')
         if(usedRandomNumbersRestaurant.indexOf(randomlySelectedRestaurant)==-1 && restaurantSize != 0){
@@ -60,13 +58,10 @@ function shuffle(){
             var restaurantHours = $('<div><p>'+ storeHours +'</p></div>');
 
             // append restaurant info to restaurant api
-            $('.restaurant-api').append(restaurantInfo);
-            $('.restaurant-api').append(restaurantAddress);
-            $('.restaurant-api').append(restaurantPhone);
+            $('.restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
             if (storeHours != ""){
                 $('.restaurant-api').append(restaurantHours);
             }
-            
         }
         else if (restaurantSize == 0){
             controller1 = false;
@@ -77,6 +72,7 @@ function shuffle(){
         }
         else {randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize)}
     }
+
     while(controller2) {
         console.log('loop2')
         if(usedRandomNumbersEvent.indexOf(randomlySelectedEvent)==-1 && eventSize != 0){
@@ -87,17 +83,14 @@ function shuffle(){
             var eventDates = $('<div><p>' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
             var eventVenue = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
             var eventVenueAddress = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
-            var eventPrice = $('<div><p> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
-            
-
-
+            var priceCheck = eventList[randomlySelectedEvent].priceRanges;
             // append event info to event api
-            $('.event-api').append(eventInfo);
-            $('.event-api').append(eventType);
-            $('.event-api').append(eventDates);
-            $('.event-api').append(eventVenue);
-            $('.event-api').append(eventVenueAddress);
-            $('.event-api').append(eventPrice);
+            $('.event-api').append(eventInfo, eventType, eventDates, eventVenue, eventVenueAddress);
+            
+            if (priceCheck != undefined){
+                var eventPrice = $('<div><p> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
+                $('.event-api').append(eventPrice);
+            }
         }
         else if(eventSize == 0){
             console.log("no events")
@@ -109,9 +102,7 @@ function shuffle(){
         }
         else {randomlySelectedEvent = Math.floor(Math.random()*eventSize)}
     }
-        //NEED TO BE DISPLAYED USING MODAL
 
-    
     usedRandomNumbersRestaurant.push(randomlySelectedRestaurant);
     usedRandomNumbersEvent.push(randomlySelectedEvent);
     console.log(usedRandomNumbers);
@@ -193,7 +184,6 @@ createBtn.onclick=()=>{
                 .catch(error => console.log('error', error));
                 })
     })
-    
 }
 
 saveBtn.onclick=()=>{
