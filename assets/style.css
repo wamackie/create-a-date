@@ -225,6 +225,8 @@ margin: 0%;
 
 .api-text{
 font-size: 20px;
+margin-top: 0%;
+margin-bottom: 0%;
 text-align: center;
 color: var(--primary-color);
 background-color: var(--quarternary-color);
@@ -256,8 +258,8 @@ color: var(--quarternary-color);
 .save-date-btn{
 text-align: center;
 margin-top:10px;
-margin-left: 42%;
-font-size: 30px;
+margin-left: 43%;
+font-size: 25px;
 background-color: var(--tertiary-color);
 box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 padding: 15px;
@@ -270,8 +272,8 @@ border-radius: 0 15px;
 .shuffle-btn{
   text-align: center;
   margin-top: 10px;
-  margin-left: 45%;
-  font-size: 30px;
+  margin-left: 45.5%;
+  font-size: 25px;
   background-color: var(--tertiary-color);
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
   padding: 15px;
@@ -284,7 +286,7 @@ border-radius: 0 15px;
 
 .saved-date-page{
 width: 80%;
-height: 95%;
+height: 98%;
 background-color: var(--tertiary-color);
 border-radius: 15%;
 top: 50%;
@@ -375,7 +377,7 @@ background-color: var(--tertiary-color);
   border: 1px solid black;
   border-radius: 10px;
   z-index: 10;
-  background-color: white;
+  background-color: var(--secondary-color);
   width: 500px;
   max-width: 80%;
 }
@@ -396,8 +398,14 @@ background-color: var(--tertiary-color);
   
 }
 
-.modal-text {
+p.modal-text {
   color: var(--primary-color);
+  background-color: #c75146;
+  text-align: center;
+  font-size: 50px;
+  text-shadow: 2px 4px rgba(129,23,27, 0.5);
+  margin-left: 5%;
+  margin-top: 6%;
   border: none;
 }
 
@@ -418,7 +426,7 @@ background-color: var(--tertiary-color);
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   pointer-events: none;
 }
 
@@ -440,6 +448,12 @@ background-color: var(--tertiary-color);
   margin-left: 2%;
   font-size: 55px;
   margin-top: 3%;
+}
+
+p.modal-text {
+  font-size: 50px;
+  margin-left: 5%;
+  margin-top: 6%;
 }
 
 .new-date-btn, .saved-date-btn{
@@ -490,15 +504,15 @@ button.create-date-btn{
 }
 
 .save-date-btn{
-  margin-top:5%;
-  margin-left: 33%;
-  font-size: 60px;
+  margin-top:10px;
+  margin-left: 42%;
+  font-size: 25px;
 }
 
 .shuffle-btn{
-  margin-left: 42%;
-  margin-top:5%;
-  font-size: 50px;
+  margin-left: 45%;
+  margin-top:10px;
+  font-size: 25px;
 }
 
 .saved-date-page{
@@ -533,6 +547,8 @@ height: 95%;
     margin-left: 1%;
     font-size: 58px;
   }
+
+  
   
   .new-date-btn, .saved-date-btn{
     padding: 19px;
@@ -545,13 +561,13 @@ height: 95%;
   }
   
   .save-date-btn{
-    margin-left: 30%;
-    font-size: 40px;
+    margin-left: 36%;
+    font-size: 25px;
   }
   
   .shuffle-btn{
-    margin-left: 38%;
-    font-size: 40px;
+    margin-left: 41%;
+    font-size: 25px;
   }
 
   .delete-date-btn{
@@ -567,6 +583,12 @@ height: 95%;
     margin-top: 3%;
   }
   
+  p.modal-text {
+    font-size: 50px;
+    margin-left: 1%;
+    margin-top: 6%;
+  }
+
   .new-date-btn, .saved-date-btn{
     font-size: 25px;
     margin-left: 5%;
@@ -616,7 +638,7 @@ height: 95%;
   .delete-date-btn{
     font-size: 40px;
     width: 40%;
-    padding: 20px;
+    padding: 10px;
     margin-left: 30%;
   }
 }
@@ -646,7 +668,7 @@ height: 95%;
   }
   
   input.check-box{
-    margin-left: 50%;
+    margin-left: 48%;
   }
   
   .criteria-page{
@@ -669,7 +691,7 @@ height: 95%;
   }
   
   .save-date-btn{
-    margin-left: 18%;
+    margin-left: 19%;
     font-size: 30px;
     padding: 10px;
   }
@@ -687,8 +709,8 @@ height: 95%;
   .delete-date-btn{
     font-size: 30px;
     width: 45%;
-    padding: 20px;
-    margin-left: 30%;
+    padding: 10px;
+    margin-left: 28%;
   }
 }
 
