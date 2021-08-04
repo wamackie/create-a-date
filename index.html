@@ -45,7 +45,14 @@
             <label class="criteria-list" for="city">City:</label>
             <input type="search" id="city">
         </div>
-            <button class="create-date-btn">Create Your Date</button>
+            <button data-modal-target="#modal" class="create-date-btn">Create Your Date</button>
+            <div class="modal active" id="modal">
+                <div class="modal-content">
+                    <span data-close-button class="close-button">&times;</span>
+                  <p class="modal-text">Please Enter a Valid City Zip Code</p>
+                </div>
+                <div class="active" id="overlay"></div>
+            </div>
     </div>
     <div class="new-date-page">
         <h2 class="new-title">See Anything You Like?</h2>

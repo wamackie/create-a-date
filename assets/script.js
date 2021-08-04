@@ -24,6 +24,11 @@ const shuffleBtn = document.querySelector(".shuffle-btn")
 var restaurantCheckBox;
 //currently Movies isnt being used
 var eventsCheckBox;
+var openModalButtons = document.querySelectorAll("[data-modal-target]");
+var closeModalButtons = document.querySelector("data-close-button");
+var overlay = document.getElementById("overlay");
+
+
 
 
 Object.size = function(obj) {
@@ -154,7 +159,7 @@ shuffleBtn.onclick=()=>{
 //userInput (date + ZIP) page
 createBtn.onclick=()=>{
     var city = $('#city').val();
-
+    
     fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
     .then(response => response.json())
     .then(function (result){
@@ -194,6 +199,41 @@ createBtn.onclick=()=>{
                 })
     })
     
+}
+
+openModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        var modal = document.querySelector(button.dataset.modalTarget);
+        openModal(modal);
+    });
+});
+
+overlay.addEventListener("click", () => {
+    var modals = document.querySelectorAll(".modal.active");
+    modals.forEach(modal => {
+        closeModal(modal);
+    });
+});
+
+closeModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        var modal = button.closest(".modal");
+        closeModal(modal);
+     });
+});
+
+function openModal(modal) {
+    if(modal == null) 
+    return;
+    modal.classList.add("active");
+    overlay.classList.add("active");
+}
+
+function closeModal(modal) {
+    if (modal == null)
+    return;
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
 }
 
 saveBtn.onclick=()=>{
