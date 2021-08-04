@@ -55,11 +55,11 @@ function shuffle(){
         while(controller1) {
             if(usedRandomNumbersRestaurant.indexOf(randomlySelectedRestaurant)==-1 && restaurantSize != 0){
                 controller1 = false;
-                var restaurantInfo = $('<div><p>' + restaurantList[randomlySelectedRestaurant].restaurant_name + '</p></div>');
-                var restaurantAddress = $('<div><p>' + restaurantList[randomlySelectedRestaurant].address.formatted + '</p></div>');
-                var restaurantPhone = $('<div><p>'+ restaurantList[randomlySelectedRestaurant].restaurant_phone + '</p></div>');
+                var restaurantInfo = $('<div><p class = "api-text">' + restaurantList[randomlySelectedRestaurant].restaurant_name + '</p></div>');
+                var restaurantAddress = $('<div><p class = "api-text">' + restaurantList[randomlySelectedRestaurant].address.formatted + '</p></div>');
+                var restaurantPhone = $('<div><p class = "api-text">'+ restaurantList[randomlySelectedRestaurant].restaurant_phone + '</p></div>');
                 var storeHours = (restaurantList[randomlySelectedRestaurant].hours);
-                var restaurantHours = $('<div><p>'+ storeHours +'</p></div>');
+                var restaurantHours = $('<div><p class = "api-text">'+ storeHours +'</p></div>');
                 $('.restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
 
                 if (storeHours != ""){
@@ -82,16 +82,16 @@ function shuffle(){
         while(controller2) {
             if(usedRandomNumbersEvent.indexOf(randomlySelectedEvent)==-1 && eventSize != 0){
                 controller2 = false;
-                var eventInfo = $('<div><p>'+ eventList[randomlySelectedEvent].name + '</p></div>');
-                var eventType = $('<div><p>'+ eventList[randomlySelectedEvent].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelectedEvent].classifications['indexOf', 0].subGenre.name + '</p></div>');
-                var eventDates = $('<div><p>' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
-                var eventVenue = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
-                var eventVenueAddress = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+                var eventInfo = $('<div><p class = "api-text">'+ eventList[randomlySelectedEvent].name + '</p></div>');
+                var eventType = $('<div><p class = "api-text">'+ eventList[randomlySelectedEvent].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelectedEvent].classifications['indexOf', 0].subGenre.name + '</p></div>');
+                var eventDates = $('<div><p class = "api-text">' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
+                var eventVenue = $('<div><p class = "api-text">' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
+                var eventVenueAddress = $('<div><p class = "api-text">' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
                 var priceCheck = eventList[randomlySelectedEvent].priceRanges;
                 $('.event-api').append(eventInfo, eventType, eventDates, eventVenue, eventVenueAddress);
                 
                 if (priceCheck != undefined){
-                    var eventPrice = $('<div><p> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
+                    var eventPrice = $('<div><p class = "api-text"> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
                     $('.event-api').append(eventPrice);
                 }
             }
