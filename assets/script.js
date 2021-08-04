@@ -132,6 +132,11 @@ savedDateBtn.onclick=()=>{
     savedDatePage.classList.add("savedDateActivate");
 }
 
+deleteBtn.onclick=()=>{
+    location.reload();
+    localStorage.clear();
+}
+
 //Filter approval button
 nextBtn.onclick=()=>{
     usedRandomNumbersRestaurant = [];
@@ -232,9 +237,5 @@ function closeModal(modal) {
 }
 
 saveBtn.onclick=()=>{
-    location.reload();
-}
-
-deleteBtn.onclick=()=>{
     location.reload();
 }
