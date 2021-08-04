@@ -85,10 +85,9 @@ function shuffle(){
                 var eventInfo = $('<div><p class = "api-text">'+ eventList[randomlySelectedEvent].name + '</p></div>');
                 var eventType = $('<div><p class = "api-text">'+ eventList[randomlySelectedEvent].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelectedEvent].classifications['indexOf', 0].subGenre.name + '</p></div>');
                 var eventDates = $('<div><p class = "api-text">' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
-                var eventVenue = $('<div><p class = "api-text">' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
                 var eventVenueAddress = $('<div><p class = "api-text">' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
                 var priceCheck = eventList[randomlySelectedEvent].priceRanges;
-                $('.event-api').append(eventInfo, eventType, eventDates, eventVenue, eventVenueAddress);
+                $('.event-api').append(eventInfo, eventType, eventDates, eventVenueAddress);
                 
                 if (priceCheck != undefined){
                     var eventPrice = $('<div><p class = "api-text"> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
@@ -100,7 +99,6 @@ function shuffle(){
                 controller2 = false;
             }
             else if (usedRandomNumbersEvent.length==eventSize) {
-                window.alert("no more to loop through")
                 controller2 = true;
             }
             else {randomlySelectedEvent = Math.floor(Math.random()*eventSize)}
@@ -185,7 +183,7 @@ createBtn.onclick=()=>{
                     redirect: 'follow'
             };
             fetch(
-                    "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&latlong="+lat+","+lon+"", requestOptions
+                    "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&&size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&latlong="+lat+","+lon+"", requestOptions
                 )
                 .then(response => response.json())
                 .then(function (result){ 
@@ -199,7 +197,7 @@ createBtn.onclick=()=>{
                     newDatePage.classList.add("newDateActivate");
                 })
                 })
-    }).catch(error => openModal("Incorrect city"));
+    }).catch(error => openModal("Invalid City Name!"));
 }
 
 closeModalButtons.addEventListener("click", () => {
@@ -218,7 +216,7 @@ overlay.addEventListener("click", () => {
 
 //open popup window
 function openModal(errorMessage){
-    var message = $('<p>'+errorMessage+'</p>');
+    var message = $('<p class ="modal-text">'+errorMessage+'</p>');
     $('.modal-text').append(message);
 
     modal.classList.add("active");
