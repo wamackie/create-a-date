@@ -227,6 +227,10 @@ function openModal(errorMessage){
 function closeModal(){
     modal.classList.remove("active");
     overlay.classList.remove("active");
+    content = document.querySelector('.modal-text');
+    while(content.firstChild){
+        content.removeChild(content.firstChild);
+    }
 }
 saveBtn.onclick=()=>{
     location.reload();
