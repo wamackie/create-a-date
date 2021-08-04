@@ -199,11 +199,11 @@ border-radius: 0 15px;
 
 .new-date-page {
 width: 90%;
-height: 80%;
+height: 98%;
 background-color: var(--quinary-color);
 border-radius: 20%;
-top: 45%;
-display:none ;
+top: 50%;
+display:none;
 }
 
 .new-title{
@@ -224,13 +224,14 @@ margin: 0%;
 }
 
 .api-text{
-font-size: 28px;
+font-size: 20px;
 text-align: center;
 color: var(--primary-color);
 background-color: var(--quarternary-color);
 }
 .new-list{
-font-size: 20px;
+font-size: 28px;
+margin-top: 10px;
 text-align: center;
 color: var(--primary-color);
 background-color: var(--quarternary-color);
@@ -254,9 +255,9 @@ color: var(--quarternary-color);
 
 .save-date-btn{
 text-align: center;
-margin-top:2%;
+margin-top:10px;
 margin-left: 42%;
-font-size: 28px;
+font-size: 30px;
 background-color: var(--tertiary-color);
 box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 padding: 15px;
@@ -268,9 +269,9 @@ border-radius: 0 15px;
 
 .shuffle-btn{
   text-align: center;
-  margin-top: 1%;
+  margin-top: 10px;
   margin-left: 45%;
-  font-size: 28px;
+  font-size: 30px;
   background-color: var(--tertiary-color);
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
   padding: 15px;
@@ -309,7 +310,7 @@ border-bottom: 8px solid var(--primary-color);
 }
 
 .save-list{
-font-size: 20px;
+font-size: 25px;
 text-align: center;
 color: var(--primary-color);
 background-color: var(--secondary-color);
@@ -347,11 +348,11 @@ font-size: 20px;
 }
 
 .delete-date-btn{
-font-size: 50px;
+font-size: 30px;
 text-align: center;
 padding: 20px;
-margin-top:8%;
-margin-left: 25%;
+margin-top:10px;
+margin-left: 44%;
 border: 5px solid var(--primary-color);
 background-color: var(--tertiary-color);
 box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);

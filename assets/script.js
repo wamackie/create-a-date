@@ -13,8 +13,7 @@ const savedDateBtn = document.querySelector(".saved-date-btn")
 const nextBtn = document.querySelector(".next-btn")
 const createBtn = document.querySelector(".create-date-btn")
 const saveBtn = document.querySelector(".save-date-btn")
-const saveBtn2 = document.querySelector(".save-date-btn2")
-const nextBtn2 = document.querySelector(".next-btn2")
+const deleteBtn = document.querySelector(".delete-date-btn")
 const titlePage = document.querySelector(".title-page")
 const filterPage = document.querySelector(".filter-page")
 const criteriaPage = document.querySelector(".criteria-page")
@@ -233,5 +232,9 @@ function closeModal(modal) {
 }
 
 saveBtn.onclick=()=>{
+    location.reload();
+}
+
+deleteBtn.onclick=()=>{
     location.reload();
 }
