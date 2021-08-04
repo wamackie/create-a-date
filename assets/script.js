@@ -22,10 +22,9 @@ const newDatePage = document.querySelector(".new-date-page")
 const savedDatePage = document.querySelector(".saved-date-page")
 const shuffleBtn = document.querySelector(".shuffle-btn")
 var restaurantCheckBox;
-//currently Movies isnt being used
 var eventsCheckBox;
 
-
+//Gets size of an object
 Object.size = function(obj) {
     var size = 0,
       key;
@@ -33,81 +32,81 @@ Object.size = function(obj) {
       if (obj.hasOwnProperty(key)) size++;
     }
     return size;
-  };
+};
 
+//Randomly picks through array of objects, and displays API results
 function shuffle(){
     clearContent();
     var restaurantSize = Object.size(restaurantList);
     var eventSize = Object.size(eventList);
     var randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize);
     var randomlySelectedEvent = Math.floor(Math.random()*eventSize);
-    console.log(restaurantSize + "  vs   " +randomlySelectedRestaurant);
-    console.log(eventSize + "  vs   "+ randomlySelectedEvent);
     var controller1 = true;
     var controller2 = true;
+    // console.log(restaurantSize + "  vs   " +randomlySelectedRestaurant);
+    // console.log(eventSize + "  vs   "+ randomlySelectedEvent);
 
-    while(controller1) {
-        console.log('loop1')
-        if(usedRandomNumbersRestaurant.indexOf(randomlySelectedRestaurant)==-1 && restaurantSize != 0){
-            controller1 = false;
-            //--data pulling from Yelp api includes restaurant name, address, phone, and hours of operations
-            var restaurantInfo = $('<div><p>' + restaurantList[randomlySelectedRestaurant].restaurant_name + '</p></div>');
-            var restaurantAddress = $('<div><p>' + restaurantList[randomlySelectedRestaurant].address.formatted + '</p></div>');
-            var restaurantPhone = $('<div><p>'+ restaurantList[randomlySelectedRestaurant].restaurant_phone + '</p></div>');
-            var storeHours = (restaurantList[randomlySelectedRestaurant].hours);
-            var restaurantHours = $('<div><p>'+ storeHours +'</p></div>');
+    //--displays restaurant API results 
+    if (restaurantCheckBox == true) {
+        while(controller1) {
+            if(usedRandomNumbersRestaurant.indexOf(randomlySelectedRestaurant)==-1 && restaurantSize != 0){
+                controller1 = false;
+                var restaurantInfo = $('<div><p>' + restaurantList[randomlySelectedRestaurant].restaurant_name + '</p></div>');
+                var restaurantAddress = $('<div><p>' + restaurantList[randomlySelectedRestaurant].address.formatted + '</p></div>');
+                var restaurantPhone = $('<div><p>'+ restaurantList[randomlySelectedRestaurant].restaurant_phone + '</p></div>');
+                var storeHours = (restaurantList[randomlySelectedRestaurant].hours);
+                var restaurantHours = $('<div><p>'+ storeHours +'</p></div>');
+                $('.restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
 
-            // append restaurant info to restaurant api
-            $('.restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
-            if (storeHours != ""){
-                $('.restaurant-api').append(restaurantHours);
+                if (storeHours != ""){
+                    $('.restaurant-api').append(restaurantHours);
+                }
             }
+            else if (restaurantSize == 0){
+                controller1 = false;
+            }
+            else if (usedRandomNumbersRestaurant.length==restaurantSize) {
+                window.alert("no more to loop through")
+                controller1 = true;
+            }
+            else {randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize)}
         }
-        else if (restaurantSize == 0){
-            controller1 = false;
-        }
-        else if (usedRandomNumbersRestaurant.length==restaurantSize) {
-            window.alert("no more to loop through")
-            controller1 = true;
-        }
-        else {randomlySelectedRestaurant = Math.floor(Math.random()*restaurantSize)}
     }
 
-    while(controller2) {
-        console.log('loop2')
-        if(usedRandomNumbersEvent.indexOf(randomlySelectedEvent)==-1 && eventSize != 0){
-            controller2 = false;
-            //--data pulling from Ticketmaster api includes event name, type of event, venue name, address, price of tickets and information about ticket limits
-            var eventInfo = $('<div><p>'+ eventList[randomlySelectedEvent].name + '</p></div>');
-            var eventType = $('<div><p>'+ eventList[randomlySelectedEvent].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelectedEvent].classifications['indexOf', 0].subGenre.name + '</p></div>');
-            var eventDates = $('<div><p>' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
-            var eventVenue = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
-            var eventVenueAddress = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
-            var priceCheck = eventList[randomlySelectedEvent].priceRanges;
-            // append event info to event api
-            $('.event-api').append(eventInfo, eventType, eventDates, eventVenue, eventVenueAddress);
-            
-            if (priceCheck != undefined){
-                var eventPrice = $('<div><p> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
-                $('.event-api').append(eventPrice);
+    //--displays events API results
+    if (eventsCheckBox == true) {
+        while(controller2) {
+            if(usedRandomNumbersEvent.indexOf(randomlySelectedEvent)==-1 && eventSize != 0){
+                controller2 = false;
+                var eventInfo = $('<div><p>'+ eventList[randomlySelectedEvent].name + '</p></div>');
+                var eventType = $('<div><p>'+ eventList[randomlySelectedEvent].classifications['indexOf', 0].segment.name + ' ' + eventList[randomlySelectedEvent].classifications['indexOf', 0].subGenre.name + '</p></div>');
+                var eventDates = $('<div><p>' + eventList[randomlySelectedEvent].dates.start.localDate + '</p></div>');
+                var eventVenue = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].name + '</p></div>');
+                var eventVenueAddress = $('<div><p>' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].address.line1 + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].city.name + ', ' + eventList[randomlySelectedEvent]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+                var priceCheck = eventList[randomlySelectedEvent].priceRanges;
+                $('.event-api').append(eventInfo, eventType, eventDates, eventVenue, eventVenueAddress);
+                
+                if (priceCheck != undefined){
+                    var eventPrice = $('<div><p> $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].min + ' each to $' + eventList[randomlySelectedEvent].priceRanges['indexOf', 0].max + ' each</p></div>');
+                    $('.event-api').append(eventPrice);
+                }
             }
+            else if(eventSize == 0){
+                console.log("no events")
+                controller2 = false;
+            }
+            else if (usedRandomNumbersEvent.length==eventSize) {
+                window.alert("no more to loop through")
+                controller2 = true;
+            }
+            else {randomlySelectedEvent = Math.floor(Math.random()*eventSize)}
         }
-        else if(eventSize == 0){
-            console.log("no events")
-            controller2 = false;
-        }
-        else if (usedRandomNumbersEvent.length==eventSize) {
-            window.alert("no more to loop through")
-            controller2 = true;
-        }
-        else {randomlySelectedEvent = Math.floor(Math.random()*eventSize)}
     }
-
     usedRandomNumbersRestaurant.push(randomlySelectedRestaurant);
     usedRandomNumbersEvent.push(randomlySelectedEvent);
-    console.log(usedRandomNumbers);
 }
 
+//Clears content on "See Anything You Like?" page
 function clearContent(){
     var content = document.querySelector('.restaurant-api');
     while(content.firstChild){
@@ -129,20 +128,27 @@ savedDateBtn.onclick=()=>{
     savedDatePage.classList.add("savedDateActivate");
 }
 
-//Filter parameter page 
+//Filter approval button
 nextBtn.onclick=()=>{
-    usedRandomNumbers = []
-    filterPage.classList.remove("filterActivate");
+    usedRandomNumbersRestaurant = [];
+    usedRandomNumbersEvent = []
     restaurantCheckBox = document.getElementById("Restaurants").checked;
     eventsCheckBox = document.getElementById("Events").checked;
-    criteriaPage.classList.add("criteriaActivate");
+    if (restaurantCheckBox == false && eventsCheckBox == false) {
+        //MODAL FOR ONE CHECK BOX MUST BE SELECTED
+    }
+    else {
+        filterPage.classList.remove("filterActivate");
+        criteriaPage.classList.add("criteriaActivate");
+    }
 }
 
+//Shuffle button
 shuffleBtn.onclick=()=>{
     shuffle();
 }
 
-//userInput (date + ZIP) page
+//Save-this-date button
 createBtn.onclick=()=>{
     var city = $('#city').val();
 
