@@ -6,7 +6,8 @@ var restaurantList = {};
 var eventList = {};
 var usedRandomNumbersRestaurant = [];
 var usedRandomNumbersEvent = [];
-
+var saveDay;
+var city; 
 
 const newDateBtn = document.querySelector(".new-date-btn")
 const savedDateBtn = document.querySelector(".saved-date-btn")
@@ -26,6 +27,13 @@ var closeModalButtons = document.querySelector("[data-close-button]");
 var overlay = document.getElementById("overlay");
 var modal = document.getElementById("modal");
 
+const dayInput = document.querySelector('#day-of');
+const cityInput = document.querySelector('#city');
+
+var savedDate = JSON.parse(localStorage.getItem('savedDate'))
+if (savedDate===null){
+    savedDate= []; 
+}
 
 
 //Gets size of an object
@@ -125,11 +133,6 @@ newDateBtn.onclick=()=>{
     titlePage.classList.add("titleDeactivate");
 }
 
-savedDateBtn.onclick=()=>{
-    titlePage.classList.add("titleDeactivate");
-    savedDatePage.classList.add("savedDateActivate");
-}
-
 deleteBtn.onclick=()=>{
     location.reload();
     localStorage.clear();
@@ -157,47 +160,52 @@ shuffleBtn.onclick=()=>{
 
 //Save-this-date button
 createBtn.onclick=()=>{
-    var city = $('#city').val();
-    
+    city = $('#city').val();
+    saveDay = dayInput.value;
     //API 1 - a33fecb2f255c04e008c528cf89286a2
     //API 2 -
-    fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
-    .then(response => response.json())
-    .then(function (result){
-        eventTest = result
-        var lat = result['coord'].lat;
-        var lon =  result['coord'].lon;
+    if(saveDay == ""){
+        openModal("Please select a date")
+    }
+    else{
+        fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
+        .then(response => response.json())
+        .then(function (result){
+            eventTest = result
+            var lat = result['coord'].lat;
+            var lon =  result['coord'].lon;
 
-        fetch(
-            "https://api.documenu.com/v2/restaurants/search/geo?lat="+lat+"&lon="+lon+"&distance=20&key=7a024a037f7d9e36de172881e2f7b497&size=20"
-            )
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(result) {
-                for(var restaurant in result.data){
-                    restaurantList[restaurant] = result.data[restaurant];  
-              }
-                var requestOptions = {
-                    method: 'GET',
-                    redirect: 'follow'
-            };
             fetch(
-                    "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&&size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&latlong="+lat+","+lon+"", requestOptions
+                "https://api.documenu.com/v2/restaurants/search/geo?lat="+lat+"&lon="+lon+"&distance=20&key=7a024a037f7d9e36de172881e2f7b497&size=20"
                 )
-                .then(response => response.json())
-                .then(function (result){ 
-                    if (result.page.totalElements != 0 ){
-                        for(var event in result["_embedded"].events){
-                            eventList[event] = result["_embedded"].events[event];
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(result) {
+                    for(var restaurant in result.data){
+                        restaurantList[restaurant] = result.data[restaurant];  
+                }
+                    var requestOptions = {
+                        method: 'GET',
+                        redirect: 'follow'
+                };
+                fetch(
+                        "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&&size=20&apikey=0YgrYBljKlaRBH9BoF0vGgKaPYX1A96k&latlong="+lat+","+lon+"", requestOptions
+                    )
+                    .then(response => response.json())
+                    .then(function (result){ 
+                        if (result.page.totalElements != 0 ){
+                            for(var event in result["_embedded"].events){
+                                eventList[event] = result["_embedded"].events[event];
+                            }
                         }
-                    }
-                    shuffle();
-                    criteriaPage.classList.remove("criteriaActivate");
-                    newDatePage.classList.add("newDateActivate");
-                })
-                })
-    }).catch(error => openModal("Invalid City Name!"));
+                        shuffle();
+                        criteriaPage.classList.remove("criteriaActivate");
+                        newDatePage.classList.add("newDateActivate");
+                    })
+                    })
+        }).catch(error => openModal("Invalid City Name!"));
+    }
 }
 
 closeModalButtons.addEventListener("click", () => {
@@ -232,6 +240,62 @@ function closeModal(){
         content.removeChild(content.firstChild);
     }
 }
+
 saveBtn.onclick=()=>{
+
+    var selectedRestaurant =  restaurantList[usedRandomNumbersRestaurant[(usedRandomNumbersRestaurant.length-1)]]
+    var selectedEvent = eventList[usedRandomNumbersEvent[(usedRandomNumbersEvent.length-1)]]
+    if (restaurantCheckBox == false){
+        selectedRestaurant = "none"
+    }
+    if (eventsCheckBox == false){
+        selectedEvent = "none"
+    }
+    //Need to put these in filter check box section
+    var selectedActivities = {"city":city, "date":saveDay, "restaurant":selectedRestaurant , "event":selectedEvent}
+    
+    localStorage.setItem("savedDate", JSON.stringify(selectedActivities));
     location.reload();
+
 }
+
+savedDateBtn.onclick=()=>{
+    savedDate = JSON.parse(localStorage.getItem('savedDate'))
+    if (savedDate == undefined){
+        openModal("No Saved Dates!")
+    }
+
+    else{
+        var displayDate = $('<p class="date-day">Date Day: <span>'+savedDate.date+'</span></p>')
+        var displayCity = $('<p class="date-city">City: <span>'+savedDate.city+'</span></p>')
+        $('.date-day-display').append(displayCity,displayDate);
+        // $('.date-day').append(displayDate);
+
+        var restaurantInfo = $('<div><p class = "api-text">' + savedDate["restaurant"].restaurant_name + '</p></div>');
+        var restaurantAddress = $('<div><p class = "api-text">' + savedDate["restaurant"].address.formatted + '</p></div>');
+        var restaurantPhone = $('<div><p class = "api-text">'+ savedDate["restaurant"].restaurant_phone + '</p></div>');
+        var storeHours = (savedDate["restaurant"].hours);
+        var restaurantHours = $('<div><p class = "api-text">'+ storeHours +'</p></div>');
+        $('.saved-restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
+
+        if (storeHours != ""){
+            $('.saved-restaurant-api').append(restaurantHours);
+        }
+
+        var eventInfo = $('<div><p class = "api-text">'+ savedDate["event"].name + '</p></div>');
+        var eventType = $('<div><p class = "api-text">'+ savedDate["event"].classifications['indexOf', 0].segment.name + ' ' + savedDate["event"].classifications['indexOf', 0].subGenre.name + '</p></div>');
+        var eventDates = $('<div><p class = "api-text">' + savedDate["event"].dates.start.localDate + '</p></div>');
+        var eventVenueAddress = $('<div><p class = "api-text">' + savedDate["event"]._embedded.venues['indexOf', 0].address.line1 + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].city.name + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+        var priceCheck = savedDate["event"].priceRanges;
+        $('.saved-event-api').append(eventInfo, eventType, eventDates, eventVenueAddress);
+
+        if (priceCheck != undefined){
+            var eventPrice = $('<div><p class = "api-text"> $' + savedDate["event"].priceRanges['indexOf', 0].min + ' each to $' + savedDate["event"].priceRanges['indexOf', 0].max + ' each</p></div>');
+            $('.saved-event-api').append(eventPrice);
+        }
+        titlePage.classList.add("titleDeactivate");
+        savedDatePage.classList.add("savedDateActivate");
+    }
+    
+}
+
