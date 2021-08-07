@@ -15,6 +15,7 @@ const nextBtn = document.querySelector(".next-btn")
 const createBtn = document.querySelector(".create-date-btn")
 const saveBtn = document.querySelector(".save-date-btn")
 const deleteBtn = document.querySelector(".delete-date-btn")
+const restartBtn = document.querySelector(".restart-btn")
 const titlePage = document.querySelector(".title-page")
 const filterPage = document.querySelector(".filter-page")
 const criteriaPage = document.querySelector(".criteria-page")
@@ -259,6 +260,7 @@ saveBtn.onclick=()=>{
 
 }
 
+
 savedDateBtn.onclick=()=>{
     savedDate = JSON.parse(localStorage.getItem('savedDate'))
     if (savedDate == undefined){
@@ -299,3 +301,6 @@ savedDateBtn.onclick=()=>{
     
 }
 
+restartBtn.onclick=()=>{
+    location.reload();
+}
