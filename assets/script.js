@@ -32,7 +32,7 @@ const cityInput = document.querySelector('#city');
 
 var savedDate = JSON.parse(localStorage.getItem('savedDate'))
 if (savedDate===null){
-    savedDate= []; 
+    savedDate= {}; 
 }
 
 
@@ -168,6 +168,7 @@ createBtn.onclick=()=>{
         openModal("Please select a date")
     }
     else{
+        displayLoading()
         fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
         .then(response => response.json())
         .then(function (result){
@@ -200,11 +201,15 @@ createBtn.onclick=()=>{
                             }
                         }
                         shuffle();
+                        hideLoading()
                         criteriaPage.classList.remove("criteriaActivate");
                         newDatePage.classList.add("newDateActivate");
                     })
                     })
-        }).catch(error => openModal("Invalid City Name!"));
+        }).catch(function (result){
+            openModal("Invalid City Name!")
+            hideLoading()
+        });
     }
 }
 
@@ -251,16 +256,16 @@ saveBtn.onclick=()=>{
     if (eventsCheckBox == false){
         selectedEvent = "none"
     }
-    //Need to put these in filter check box section
-    var selectedActivities = {"city":city, "date":saveDay, "restaurant":selectedRestaurant , "event":selectedEvent}
-    
+
+
+    var selectedActivities = {"city":city, "date":saveDay, "restaurant":selectedRestaurant , "event":selectedEvent}  
     localStorage.setItem("savedDate", JSON.stringify(selectedActivities));
     location.reload();
 
 }
 
 savedDateBtn.onclick=()=>{
-    savedDate = JSON.parse(localStorage.getItem('savedDate'))
+    var savedDate = JSON.parse(localStorage.getItem('savedDate'))
     if (savedDate == undefined){
         openModal("No Saved Dates!")
     }
@@ -297,5 +302,22 @@ savedDateBtn.onclick=()=>{
         savedDatePage.classList.add("savedDateActivate");
     }
     
+}
+
+// selecting loading div
+const loader = document.querySelector("#loading");
+
+// showing loading
+function displayLoading() {
+    loader.classList.add("display");
+    // to stop loading after some time
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 5000);
+}
+
+// hiding loading 
+function hideLoading() {
+    loader.classList.remove("display");
 }
 
