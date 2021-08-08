@@ -8,7 +8,7 @@
   --quinary-color: #540804;
 }
 
-
+/*Main Body Style*/
 *{
   margin: 0;
   padding: 0;
@@ -16,6 +16,7 @@
   font-family: 'Baloo Chettan 2', sans-serif;
   background-color: var(--quarternary-color);
 }
+
 
 
 
@@ -27,6 +28,7 @@
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 
 }
+
 .medium-flex-dir-row {
 -webkit-box-orient: horizontal;
 -webkit-box-direction: normal;
@@ -44,7 +46,7 @@ display: inline;
 .title-page.titleDeactivate{
 display: none;
 }
-
+/*Title page Style*/
 .title-page{
 width: 75%;
 padding: 15px;
@@ -80,7 +82,7 @@ box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.3);
 border-radius: 0px 15px;
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 }
-
+/*Filter page Style*/
 .filter-page{
 display: none ;
 }
@@ -135,7 +137,7 @@ background-color: var(--tertiary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 border-radius: 0px 15px;
 }
-
+/*User Criteria Page*/
 .criteria-page{
 width: 70%;
 height: 40%;
@@ -196,7 +198,7 @@ background-color: var(--tertiary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 border-radius: 0 15px;
 }
-
+/*New Date Page*/
 .new-date-page {
 width: 90%;
 height: 98%;
@@ -283,7 +285,7 @@ border-radius: 0 15px;
   border: 5px solid var(--primary-color);
   border-radius: 0 15px;
 }
-
+/*Saved Date Page*/
 .saved-date-page{
 width: 80%;
 height: 98%;
@@ -356,28 +358,46 @@ font-size: 20px;
 
 span {
   font-size: 20px;
+  color: var(--quinary-color);
   background-color: var(--secondary-color);
 }
 
 .delete-date-btn{
 font-size: 30px;
 text-align: center;
-padding: 20px;
-margin-top:10px;
-margin-left: 44%;
-border: 5px solid var(--primary-color);
-background-color: var(--tertiary-color);
+padding: 10px;
+margin-top:5px;
+margin-left: 30%;
+width: 15%;
+border: 5px solid var(--quinary-color);
 box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 color: var(--primary-color);
-background-color: var(--tertiary-color);
+background-color: var(--quarternary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 border-radius:0px 15px;
 }
 
+.restart-btn{
+  font-size: 30px;
+  text-align: center;
+  padding: 10px;
+  margin-top:5px;
+  margin-left: 10%;
+  width: 15%;
+  border: 5px solid var(--primary-color);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  text-shadow: 1px 2px rgba(199,81,70, 0.5);
+  border-radius:0px 15px;
+  }
+
+
+
 .color{
 background-color: var(--tertiary-color);
 }
-
+/*Modal Styling*/
 .modal {
   position: fixed;
   top: 50%;
@@ -427,7 +447,7 @@ p.modal-text {
   font-size: 1.25rem;
   font-weight: bold;
 }
-
+/*Loading Icon*/
 #overlay {
   position: fixed;
   opacity: 0;
@@ -552,7 +572,7 @@ button.create-date-btn{
 }
 
 .saved-date-page{
-width: 90%;
+width: 80%;
 height: 95%;
 }
 
@@ -570,11 +590,17 @@ height: 95%;
 }
 
 .delete-date-btn{
-  font-size: 60px;
-  width: 20%;
+  font-size: 30px;
+  width: 17%;
   padding: 10px;
   margin-top:4%;
-  margin-left: 40%;
+  margin-left: 30%;
+}
+
+.restart-btn{
+  font-size: 30px;
+  margin-left: 10%;
+  width: 17%;
 }
 }
 
@@ -607,9 +633,14 @@ height: 95%;
   }
 
   .delete-date-btn{
-    font-size: 40px;
-    width: 25%;
-    margin-left: 38%;
+    font-size: 30px;
+    width: 22%;
+    margin-left: 25%;
+  }
+  .restart-btn{
+    font-size: 30px;
+    margin-left: 10%;
+    width: 22%;
   }
 }
 
@@ -672,10 +703,15 @@ height: 95%;
   }
   
   .delete-date-btn{
-    font-size: 40px;
-    width: 40%;
+    font-size: 28px;
+    width: 30%;
     padding: 10px;
-    margin-left: 30%;
+    margin-left: 18%;
+  }
+  .restart-btn{
+    font-size: 28px;
+    margin-left: 5%;
+    width: 30%;
   }
 }
 
@@ -743,10 +779,16 @@ height: 95%;
   }
   
   .delete-date-btn{
-    font-size: 30px;
-    width: 45%;
+    font-size: 35px;
+    width: 48%;
     padding: 10px;
     margin-left: 28%;
+  }
+  .restart-btn{
+    font-size: 35px;
+    margin-top: 2%;
+    margin-left: 28%;
+    width: 48%;
   }
 }
 

@@ -1,35 +1,37 @@
-//remove this variable in the future
-var restaurantTest;
-var eventTest;
-
+//Beginning Variables
 var restaurantList = {};
 var eventList = {};
 var usedRandomNumbersRestaurant = [];
 var usedRandomNumbersEvent = [];
 var saveDay;
 var city; 
-
+//Constants used throughout
+//BTN section
 const newDateBtn = document.querySelector(".new-date-btn")
 const savedDateBtn = document.querySelector(".saved-date-btn")
 const nextBtn = document.querySelector(".next-btn")
 const createBtn = document.querySelector(".create-date-btn")
 const saveBtn = document.querySelector(".save-date-btn")
 const deleteBtn = document.querySelector(".delete-date-btn")
+const restartBtn = document.querySelector(".restart-btn")
+const shuffleBtn = document.querySelector(".shuffle-btn")
+//Page section
 const titlePage = document.querySelector(".title-page")
 const filterPage = document.querySelector(".filter-page")
 const criteriaPage = document.querySelector(".criteria-page")
 const newDatePage = document.querySelector(".new-date-page")
 const savedDatePage = document.querySelector(".saved-date-page")
-const shuffleBtn = document.querySelector(".shuffle-btn")
+//Filter Variables
 var restaurantCheckBox;
 var eventsCheckBox;
+//Modal/Loading Icon Variables
 var closeModalButtons = document.querySelector("[data-close-button]");
 var overlay = document.getElementById("overlay");
 var modal = document.getElementById("modal");
-
+//Constants for User input
 const dayInput = document.querySelector('#day-of');
 const cityInput = document.querySelector('#city');
-
+//Empty savedDate
 var savedDate = JSON.parse(localStorage.getItem('savedDate'))
 if (savedDate===null){
     savedDate= {}; 
@@ -55,8 +57,6 @@ function shuffle(){
     var randomlySelectedEvent = Math.floor(Math.random()*eventSize);
     var controller1 = true;
     var controller2 = true;
-    // console.log(restaurantSize + "  vs   " +randomlySelectedRestaurant);
-    // console.log(eventSize + "  vs   "+ randomlySelectedEvent);
 
     //--displays restaurant API results 
     if (restaurantCheckBox == true) {
@@ -158,12 +158,12 @@ shuffleBtn.onclick=()=>{
     shuffle();
 }
 
-//Save-this-date button
+//API fetch for Create your date button
 createBtn.onclick=()=>{
     city = $('#city').val();
     saveDay = dayInput.value;
     //API 1 - a33fecb2f255c04e008c528cf89286a2
-    //API 2 -
+    //API 2 - fa0e2d502955fffde3147fb635a2c723
     if(saveDay == ""){
         openModal("Please select a date")
     }
@@ -245,7 +245,7 @@ function closeModal(){
         content.removeChild(content.firstChild);
     }
 }
-
+//Save Date button
 saveBtn.onclick=()=>{
 
     var selectedRestaurant =  restaurantList[usedRandomNumbersRestaurant[(usedRandomNumbersRestaurant.length-1)]]
@@ -264,6 +264,7 @@ saveBtn.onclick=()=>{
 
 }
 
+//Saved date page button
 savedDateBtn.onclick=()=>{
     var savedDate = JSON.parse(localStorage.getItem('savedDate'))
     if (savedDate == undefined){
@@ -274,7 +275,6 @@ savedDateBtn.onclick=()=>{
         var displayDate = $('<p class="date-day">Date Day: <span>'+savedDate.date+'</span></p>')
         var displayCity = $('<p class="date-city">City: <span>'+savedDate.city+'</span></p>')
         $('.date-day-display').append(displayCity,displayDate);
-        // $('.date-day').append(displayDate);
 
         var restaurantInfo = $('<div><p class = "api-text">' + savedDate["restaurant"].restaurant_name + '</p></div>');
         var restaurantAddress = $('<div><p class = "api-text">' + savedDate["restaurant"].address.formatted + '</p></div>');
@@ -321,3 +321,7 @@ function hideLoading() {
     loader.classList.remove("display");
 }
 
+//Brings you back to home screen
+restartBtn.onclick=()=>{
+    location.reload();
+}
