@@ -34,7 +34,7 @@ const cityInput = document.querySelector('#city');
 //Empty savedDate
 var savedDate = JSON.parse(localStorage.getItem('savedDate'))
 if (savedDate===null){
-    savedDate= {}; 
+    savedDate= []; 
 }
 
 
@@ -266,37 +266,40 @@ saveBtn.onclick=()=>{
 
 //Saved date page button
 savedDateBtn.onclick=()=>{
-    var savedDate = JSON.parse(localStorage.getItem('savedDate'))
+    savedDate = JSON.parse(localStorage.getItem('savedDate'))
     if (savedDate == undefined){
         openModal("No Saved Dates!")
     }
 
     else{
-        var displayDate = $('<p class="date-day">Date Day: <span>'+savedDate.date+'</span></p>')
-        var displayCity = $('<p class="date-city">City: <span>'+savedDate.city+'</span></p>')
-        $('.date-day-display').append(displayCity,displayDate);
+        if (savedDate["restaurant"] != 'none') {
+            var displayDate = $('<p class="date-day">Date Day: <span>'+savedDate.date+'</span></p>')
+            var displayCity = $('<p class="date-city">City: <span>'+savedDate.city+'</span></p>')
+            $('.date-day-display').append(displayCity,displayDate);
 
-        var restaurantInfo = $('<div><p class = "api-text">' + savedDate["restaurant"].restaurant_name + '</p></div>');
-        var restaurantAddress = $('<div><p class = "api-text">' + savedDate["restaurant"].address.formatted + '</p></div>');
-        var restaurantPhone = $('<div><p class = "api-text">'+ savedDate["restaurant"].restaurant_phone + '</p></div>');
-        var storeHours = (savedDate["restaurant"].hours);
-        var restaurantHours = $('<div><p class = "api-text">'+ storeHours +'</p></div>');
-        $('.saved-restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
-
-        if (storeHours != ""){
-            $('.saved-restaurant-api').append(restaurantHours);
+            var restaurantInfo = $('<div><p class = "api-text">' + savedDate["restaurant"].restaurant_name + '</p></div>');
+            var restaurantAddress = $('<div><p class = "api-text">' + savedDate["restaurant"].address.formatted + '</p></div>');
+            var restaurantPhone = $('<div><p class = "api-text">'+ savedDate["restaurant"].restaurant_phone + '</p></div>');
+            var storeHours = (savedDate["restaurant"].hours);
+            var restaurantHours = $('<div><p class = "api-text">'+ storeHours +'</p></div>');
+            $('.saved-restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
+            if (storeHours != ""){
+                $('.saved-restaurant-api').append(restaurantHours);
+            }
         }
 
-        var eventInfo = $('<div><p class = "api-text">'+ savedDate["event"].name + '</p></div>');
-        var eventType = $('<div><p class = "api-text">'+ savedDate["event"].classifications['indexOf', 0].segment.name + ' ' + savedDate["event"].classifications['indexOf', 0].subGenre.name + '</p></div>');
-        var eventDates = $('<div><p class = "api-text">' + savedDate["event"].dates.start.localDate + '</p></div>');
-        var eventVenueAddress = $('<div><p class = "api-text">' + savedDate["event"]._embedded.venues['indexOf', 0].address.line1 + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].city.name + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].state.name + '</p></div>');
-        var priceCheck = savedDate["event"].priceRanges;
-        $('.saved-event-api').append(eventInfo, eventType, eventDates, eventVenueAddress);
-
-        if (priceCheck != undefined){
-            var eventPrice = $('<div><p class = "api-text"> $' + savedDate["event"].priceRanges['indexOf', 0].min + ' each to $' + savedDate["event"].priceRanges['indexOf', 0].max + ' each</p></div>');
-            $('.saved-event-api').append(eventPrice);
+        if (savedDate["event"] != 'none') {
+            var eventInfo = $('<div><p class = "api-text">'+ C.name + '</p></div>');
+            var eventType = $('<div><p class = "api-text">'+ savedDate["event"].classifications['indexOf', 0].segment.name + ' ' + savedDate["event"].classifications['indexOf', 0].subGenre.name + '</p></div>');
+            var eventDates = $('<div><p class = "api-text">' + savedDate["event"].dates.start.localDate + '</p></div>');
+            var eventVenueAddress = $('<div><p class = "api-text">' + savedDate["event"]._embedded.venues['indexOf', 0].address.line1 + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].city.name + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+            var priceCheck = savedDate["event"].priceRanges;
+            $('.saved-event-api').append(eventInfo, eventType, eventDates, eventVenueAddress);
+    
+            if (priceCheck != undefined){
+                var eventPrice = $('<div><p class = "api-text"> $' + savedDate["event"].priceRanges['indexOf', 0].min + ' each to $' + savedDate["event"].priceRanges['indexOf', 0].max + ' each</p></div>');
+                $('.saved-event-api').append(eventPrice);
+            }
         }
         titlePage.classList.add("titleDeactivate");
         savedDatePage.classList.add("savedDateActivate");
