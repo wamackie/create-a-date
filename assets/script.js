@@ -162,6 +162,7 @@ shuffleBtn.onclick=()=>{
 createBtn.onclick=()=>{
     city = $('#city').val();
     saveDay = dayInput.value;
+    document.querySelector(".saved-date-btn").disabled = true;
     //API 1 - a33fecb2f255c04e008c528cf89286a2
     //API 2 - fa0e2d502955fffde3147fb635a2c723
     if(saveDay == ""){
@@ -175,6 +176,7 @@ createBtn.onclick=()=>{
             eventTest = result
             var lat = result['coord'].lat;
             var lon =  result['coord'].lon;
+            
 
             fetch(
                 "https://api.documenu.com/v2/restaurants/search/geo?lat="+lat+"&lon="+lon+"&distance=20&key=7a024a037f7d9e36de172881e2f7b497&size=20"
@@ -209,6 +211,7 @@ createBtn.onclick=()=>{
         }).catch(function (result){
             openModal("Invalid City Name!")
             hideLoading()
+            document.querySelector(".saved-date-btn").disabled = false;
         });
     }
 }
@@ -289,7 +292,7 @@ savedDateBtn.onclick=()=>{
         }
 
         if (savedDate["event"] != 'none') {
-            var eventInfo = $('<div><p class = "api-text">'+ C.name + '</p></div>');
+            var eventInfo = $('<div><p class = "api-text">'+ savedDate["event"].name + '</p></div>');
             var eventType = $('<div><p class = "api-text">'+ savedDate["event"].classifications['indexOf', 0].segment.name + ' ' + savedDate["event"].classifications['indexOf', 0].subGenre.name + '</p></div>');
             var eventDates = $('<div><p class = "api-text">' + savedDate["event"].dates.start.localDate + '</p></div>');
             var eventVenueAddress = $('<div><p class = "api-text">' + savedDate["event"]._embedded.venues['indexOf', 0].address.line1 + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].city.name + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].state.name + '</p></div>');
