@@ -17,6 +17,7 @@
 </head>
 <body>
     <header>
+        <!--Main title page-->
     <div class = "title-page">
         <h1 class="title">
            Create-A-Date
@@ -24,33 +25,32 @@
         <button class="new-date-btn">New Date</button>
         <button class="saved-date-btn">Saved Date</button>
     </header>
+    <!--Filter section-->
     <div class="filter-page">
         <div class="filter">
             <h3 class ="filter-title">Filter</h3>
             <label class="filter-list" for="Restaurants">Restaurants</label>
             <input type="checkbox" class="check-box" id="Restaurants">
-            <!--We can add an event filter later if we want-->
             <label class="filter-list" for="Events">Events</label>
             <input type="checkbox" class="check-box" id="Events">
         </div> 
         <button class="next-btn">Next</button>
     </div>
+    <!--Where user adds criteria for date-->
     <div class="criteria-page">
         <h2 class="criteria-title">When and Where?</h2>
         <div class ="user-criteria">
-            <!--Let's make it so older dates can't be selected-->
             <label class="criteria-list" for="Start-day">Day of Date:</label>
             <input type="date" id="day-of">
-            <!--FOR LOCATION: WASN'T SURE WHAT INPUT WAS NEEDED FOR SEARCHING THE APIS-->
             <label class="criteria-list" for="city">City:</label>
             <input type="search" id="city">
         </div>
             <button class="create-date-btn">Create Your Date</button>
             
     </div>
+    <!--Where user sees randomized date and can shuffle or save-->
     <div class="new-date-page">
         <h2 class="new-title">See Anything You Like?</h2>
-        <!--Good place to add icons/framework requirement-->
         <ul class="api-page">
             <h3 class="new-list">Restaurants</h3>
             <li class="restaurant-api">
@@ -65,11 +65,10 @@
             <button class="shuffle-btn">Shuffle</button>
             <button class="save-date-btn">Save This Date</button>
     </div>
+    <!--Where user can look at the date that was saved-->
         <div class="saved-date-page">
             <h2 class="save-title">Saved Dates</h2>
             <div class="date-day-display">
-                <!-- <div class="date-day"></div>
-                <div class= "date-city">City:</div> -->
             </div>
             <ul class="saved-api-page">
                 <h3 class="save-list">Restaurants</h3>
@@ -86,6 +85,7 @@
                 <button class="restart-btn">Restart</button>
             </div>
         </div>
+        <!--Modal to alert user-->
         <div class="modal" id="modal">
             <div class="modal-content">
                 <span data-close-button class="close-button">&times;</span>
@@ -93,8 +93,9 @@
             </div>
             
         </div>
+        <!--Loading Icon-->
         <div id="overlay"></div>
-
+        <!--JQuery link-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>

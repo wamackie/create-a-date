@@ -8,7 +8,7 @@
   --quinary-color: #540804;
 }
 
-
+/*Main Body Style*/
 *{
   margin: 0;
   padding: 0;
@@ -16,6 +16,7 @@
   font-family: 'Baloo Chettan 2', sans-serif;
   background-color: var(--quarternary-color);
 }
+
 
 
 
@@ -27,6 +28,7 @@
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
 
 }
+
 .medium-flex-dir-row {
 -webkit-box-orient: horizontal;
 -webkit-box-direction: normal;
@@ -44,7 +46,7 @@ display: inline;
 .title-page.titleDeactivate{
 display: none;
 }
-
+/*Title page Style*/
 .title-page{
 width: 75%;
 padding: 15px;
@@ -80,7 +82,7 @@ box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.3);
 border-radius: 0px 15px;
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 }
-
+/*Filter page Style*/
 .filter-page{
 display: none ;
 }
@@ -135,7 +137,7 @@ background-color: var(--tertiary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 border-radius: 0px 15px;
 }
-
+/*User Criteria Page*/
 .criteria-page{
 width: 70%;
 height: 40%;
@@ -196,7 +198,7 @@ background-color: var(--tertiary-color);
 text-shadow: 1px 2px rgba(199,81,70, 0.5);
 border-radius: 0 15px;
 }
-
+/*New Date Page*/
 .new-date-page {
 width: 90%;
 height: 98%;
@@ -283,7 +285,7 @@ border-radius: 0 15px;
   border: 5px solid var(--primary-color);
   border-radius: 0 15px;
 }
-
+/*Saved Date Page*/
 .saved-date-page{
 width: 80%;
 height: 98%;
@@ -395,7 +397,7 @@ border-radius:0px 15px;
 .color{
 background-color: var(--tertiary-color);
 }
-
+/*Modal Styling*/
 .modal {
   position: fixed;
   top: 50%;
@@ -445,7 +447,7 @@ p.modal-text {
   font-size: 1.25rem;
   font-weight: bold;
 }
-
+/*Loading Icon*/
 #overlay {
   position: fixed;
   opacity: 0;
