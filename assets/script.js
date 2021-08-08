@@ -168,6 +168,7 @@ createBtn.onclick=()=>{
         openModal("Please select a date")
     }
     else{
+        displayLoading()
         fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=fa0e2d502955fffde3147fb635a2c723&q="+city)
         .then(response => response.json())
         .then(function (result){
@@ -200,11 +201,15 @@ createBtn.onclick=()=>{
                             }
                         }
                         shuffle();
+                        hideLoading()
                         criteriaPage.classList.remove("criteriaActivate");
                         newDatePage.classList.add("newDateActivate");
                     })
                     })
-        }).catch(error => openModal("Invalid City Name!"));
+        }).catch(function (result){
+            openModal("Invalid City Name!")
+            hideLoading()
+        });
     }
 }
 
@@ -251,9 +256,9 @@ saveBtn.onclick=()=>{
     if (eventsCheckBox == false){
         selectedEvent = "none"
     }
-    //Need to put these in filter check box section
-    var selectedActivities = {"city":city, "date":saveDay, "restaurant":selectedRestaurant , "event":selectedEvent}
-    
+
+
+    var selectedActivities = {"city":city, "date":saveDay, "restaurant":selectedRestaurant , "event":selectedEvent}  
     localStorage.setItem("savedDate", JSON.stringify(selectedActivities));
     location.reload();
 
@@ -267,37 +272,58 @@ savedDateBtn.onclick=()=>{
     }
 
     else{
-        var displayDate = $('<p class="date-day">Date Day: <span>'+savedDate.date+'</span></p>')
-        var displayCity = $('<p class="date-city">City: <span>'+savedDate.city+'</span></p>')
-        $('.date-day-display').append(displayCity,displayDate);
+        if (savedDate["restaurant"] != 'none') {
+            var displayDate = $('<p class="date-day">Date Day: <span>'+savedDate.date+'</span></p>')
+            var displayCity = $('<p class="date-city">City: <span>'+savedDate.city+'</span></p>')
+            $('.date-day-display').append(displayCity,displayDate);
 
-        var restaurantInfo = $('<div><p class = "api-text">' + savedDate["restaurant"].restaurant_name + '</p></div>');
-        var restaurantAddress = $('<div><p class = "api-text">' + savedDate["restaurant"].address.formatted + '</p></div>');
-        var restaurantPhone = $('<div><p class = "api-text">'+ savedDate["restaurant"].restaurant_phone + '</p></div>');
-        var storeHours = (savedDate["restaurant"].hours);
-        var restaurantHours = $('<div><p class = "api-text">'+ storeHours +'</p></div>');
-        $('.saved-restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
-
-        if (storeHours != ""){
-            $('.saved-restaurant-api').append(restaurantHours);
+            var restaurantInfo = $('<div><p class = "api-text">' + savedDate["restaurant"].restaurant_name + '</p></div>');
+            var restaurantAddress = $('<div><p class = "api-text">' + savedDate["restaurant"].address.formatted + '</p></div>');
+            var restaurantPhone = $('<div><p class = "api-text">'+ savedDate["restaurant"].restaurant_phone + '</p></div>');
+            var storeHours = (savedDate["restaurant"].hours);
+            var restaurantHours = $('<div><p class = "api-text">'+ storeHours +'</p></div>');
+            $('.saved-restaurant-api').append(restaurantInfo, restaurantAddress, restaurantPhone);
+            if (storeHours != ""){
+                $('.saved-restaurant-api').append(restaurantHours);
+            }
         }
 
-        var eventInfo = $('<div><p class = "api-text">'+ savedDate["event"].name + '</p></div>');
-        var eventType = $('<div><p class = "api-text">'+ savedDate["event"].classifications['indexOf', 0].segment.name + ' ' + savedDate["event"].classifications['indexOf', 0].subGenre.name + '</p></div>');
-        var eventDates = $('<div><p class = "api-text">' + savedDate["event"].dates.start.localDate + '</p></div>');
-        var eventVenueAddress = $('<div><p class = "api-text">' + savedDate["event"]._embedded.venues['indexOf', 0].address.line1 + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].city.name + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].state.name + '</p></div>');
-        var priceCheck = savedDate["event"].priceRanges;
-        $('.saved-event-api').append(eventInfo, eventType, eventDates, eventVenueAddress);
-
-        if (priceCheck != undefined){
-            var eventPrice = $('<div><p class = "api-text"> $' + savedDate["event"].priceRanges['indexOf', 0].min + ' each to $' + savedDate["event"].priceRanges['indexOf', 0].max + ' each</p></div>');
-            $('.saved-event-api').append(eventPrice);
+        if (savedDate["event"] != 'none') {
+            var eventInfo = $('<div><p class = "api-text">'+ C.name + '</p></div>');
+            var eventType = $('<div><p class = "api-text">'+ savedDate["event"].classifications['indexOf', 0].segment.name + ' ' + savedDate["event"].classifications['indexOf', 0].subGenre.name + '</p></div>');
+            var eventDates = $('<div><p class = "api-text">' + savedDate["event"].dates.start.localDate + '</p></div>');
+            var eventVenueAddress = $('<div><p class = "api-text">' + savedDate["event"]._embedded.venues['indexOf', 0].address.line1 + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].city.name + ', ' + savedDate["event"]._embedded.venues['indexOf', 0].state.name + '</p></div>');
+            var priceCheck = savedDate["event"].priceRanges;
+            $('.saved-event-api').append(eventInfo, eventType, eventDates, eventVenueAddress);
+    
+            if (priceCheck != undefined){
+                var eventPrice = $('<div><p class = "api-text"> $' + savedDate["event"].priceRanges['indexOf', 0].min + ' each to $' + savedDate["event"].priceRanges['indexOf', 0].max + ' each</p></div>');
+                $('.saved-event-api').append(eventPrice);
+            }
         }
         titlePage.classList.add("titleDeactivate");
         savedDatePage.classList.add("savedDateActivate");
     }
     
 }
+
+// selecting loading div
+const loader = document.querySelector("#loading");
+
+// showing loading
+function displayLoading() {
+    loader.classList.add("display");
+    // to stop loading after some time
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 5000);
+}
+
+// hiding loading 
+function hideLoading() {
+    loader.classList.remove("display");
+}
+
 //Brings you back to home screen
 restartBtn.onclick=()=>{
     location.reload();
