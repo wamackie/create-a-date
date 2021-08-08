@@ -447,7 +447,7 @@ p.modal-text {
   font-size: 1.25rem;
   font-weight: bold;
 }
-/*Loading Icon*/
+
 #overlay {
   position: fixed;
   opacity: 0;
@@ -465,37 +465,111 @@ p.modal-text {
   pointer-events: all;
 }
 
+/*Loading Icon*/
 #loading {
-  position: fixed;
-  top: 75%;
-  left: 50%;
   z-index: 10;
-  background-color: var(--secondary-color);
-  width: 2rem;
-  height: 2rem;
-  border: 5px solid #f3f3f3;
-  border-top: 6px solid #9c41f2;
-  border-radius: 100%;
-  margin: auto;
   visibility: hidden;
-  animation: spin 1s infinite linear;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 80%;
+  background-color: none;
+  
 }
 #loading.display {
   visibility: visible;
+  background-color: none;
 }
-@keyframes spin {
-  from {
-      transform: rotate(0deg);
+
+.loading{
+  
+  background-color: none;
+}
+.text {
+  color: #fbae17;
+  display: inline-block;
+  margin-left: 5px;
+  background-color: none;
+  font-size: 25px;
+}
+
+.bounceball {
+  position: relative;
+  display: inline-block;
+  height: 37px;
+  width: 15px;
+  background-color: none;
+}
+.bounceball:before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fbae17;
+  transform-origin: 50%;
+  -webkit-animation: bounce 500ms alternate infinite ease;
+          animation: bounce 500ms alternate infinite ease;
+          background-color: none;
+          
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    top: 30px;
+    height: 5px;
+    border-radius: 60px 60px 20px 20px;
+    transform: scaleX(2);
+    background-color: none;
   }
-  to {
-      transform: rotate(360deg);
+  35% {
+    height: 15px;
+    border-radius: 50%;
+    transform: scaleX(1);
+    background-color: none;
+  }
+  100% {
+    top: 0;
+    background-color: none;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    top: 30px;
+    height: 5px;
+    border-radius: 60px 60px 20px 20px;
+    transform: scaleX(2);
+    background-color: none;
+  }
+  35% {
+    height: 15px;
+    border-radius: 50%;
+    transform: scaleX(1);
+    background-color: none;
+  }
+  100% {
+    top: 0;
+    background-color: none;
   }
 }
 
 /****** Media Breakpoints ******/
 
 @media screen and (max-width: 1300px) {
-.title-page{
+
+  #loading{
+    top: 15%;
+  }
+
+  .text{
+    font-size: 35px;
+  }
+
+  .title-page{
   width: 85%;
 }
 
@@ -542,6 +616,7 @@ input.check-box{
 .criteria-page{
   width: 85%;
   height: 30%;
+  display: inline;
 }
 
 input#day-of, #city{
@@ -645,6 +720,10 @@ height: 95%;
 }
 
 @media screen and (max-width: 650px) {
+  #loading{
+    top: 10%;
+  }
+  
   .title{
     font-size: 45px;
     margin-top: 3%;
@@ -716,6 +795,14 @@ height: 95%;
 }
 
 @media screen and (max-width: 450px) {
+  #loading{
+    top: 8%;
+    width: 60%;
+  }
+  
+  .text{
+    font-size:30px;
+  }
   .title{
     font-size: 33px;
     margin-top: 3%;
