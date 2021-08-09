@@ -616,7 +616,7 @@ input.check-box{
 .criteria-page{
   width: 85%;
   height: 30%;
-  display: inline;
+  display: none;
 }
 
 input#day-of, #city{
