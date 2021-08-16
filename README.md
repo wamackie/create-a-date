@@ -20,7 +20,7 @@ Are you tired of the conversation of "What do you wanna do today?" and "I don't 
 ![ demo](./assets/img/save-dates.png)
 
 ### Website
-https://electrolion.github.io/Create-a-date/
+https://wamackie.github.io/Create-a-date/
 
 ## Author
 👤 **Arianna McCollum**
